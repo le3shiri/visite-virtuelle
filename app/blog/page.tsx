@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
+import Image from "next/image"
 import { Calendar, Clock, ArrowRight, TrendingUp, Lightbulb, BookOpen } from "lucide-react"
 
 export const metadata = {
@@ -140,15 +141,37 @@ export default function BlogPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 lg:pt-40 lg:pb-24 bg-gradient-to-b from-muted/50 to-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
-              Blog & <span className="text-primary">Ressources</span>
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/360-virtual-tour-demo-video-thumbnail-play-button.jpg"
+            alt="Blog et ressources"
+            fill
+            className="object-cover opacity-10"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background/95 to-accent/20" />
+        </div>
+
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-semibold text-sm mb-6">
+              Blog & Ressources
+            </div>
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 text-balance">
+              Conseils & <span className="text-primary">Actualités</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed">
-              Conseils, études de cas et actualités sur les visites virtuelles 360° pour développer votre activité
+            <p className="text-xl text-muted-foreground mb-8 text-pretty">
+              Découvrez nos articles, études de cas et ressources pour tirer le meilleur parti des visites virtuelles
+              360°
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
+                <Link href="/contact">Démarrer un Projet</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/tarifs">Voir nos Tarifs</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -325,7 +348,7 @@ export default function BlogPage() {
                   <Button asChild size="lg">
                     <Link href="/contact">Demander un Devis</Link>
                   </Button>
-                  <Button asChild size="lg" variant="outline">
+                  <Button asChild variant="outline" size="lg">
                     <Link href="/portfolio">Voir nos Réalisations</Link>
                   </Button>
                 </div>

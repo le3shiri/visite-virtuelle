@@ -2,6 +2,8 @@ import type React from "react"
 import type { Metadata } from "next"
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
+import { Navigation } from "@/components/navigation"
+import { Footer } from "@/components/footer"
 import { FloatingWhatsApp } from "@/components/floating-cta"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
@@ -22,7 +24,9 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}>
+        <Navigation />
         <Suspense fallback={null}>{children}</Suspense>
+        <Footer />
         <Analytics />
         <FloatingWhatsApp />
       </body>

@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
+import Image from "next/image"
 import { Target, Lightbulb, Award, Users, MapPin, Camera, Zap, Heart } from "lucide-react"
 
 export const metadata = {
@@ -74,16 +75,46 @@ export default function AProposPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 lg:pt-40 lg:pb-24 bg-gradient-to-b from-muted/50 to-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/modern-university-campus-classroom-360.jpg"
+            alt="À propos de Ladrissi Com"
+            fill
+            className="object-cover opacity-10"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background/95 to-accent/20" />
+        </div>
+
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-semibold text-sm mb-6">
+              À Propos
+            </div>
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 text-balance">
               Nous modernisons l'image des <span className="text-primary">entreprises de Tanger</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed">
+            <p className="text-xl text-muted-foreground mb-8 text-pretty">
               Ladrissi Com est né d'une passion pour la technologie et d'une vision : rendre les espaces professionnels
               accessibles au monde entier grâce aux visites virtuelles 360°.
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
+                <Link href="/contact">Contactez-nous</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/portfolio">Nos Réalisations</Link>
+              </Button>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 max-w-3xl mx-auto">
+              {stats.map((stat) => (
+                <div key={stat.label}>
+                  <div className="text-4xl font-bold text-primary mb-2">{stat.number}</div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -121,20 +152,6 @@ export default function AProposPage() {
                 <Camera className="h-16 w-16 text-primary-foreground" />
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-primary to-accent">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-4xl lg:text-5xl font-bold text-primary-foreground mb-2">{stat.number}</div>
-                <div className="text-sm lg:text-base text-primary-foreground/90">{stat.label}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>

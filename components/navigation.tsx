@@ -13,6 +13,7 @@ export function Navigation() {
     { href: "/", label: "Accueil" },
     { href: "/secteurs", label: "Secteurs" },
     { href: "/tarifs", label: "Tarifs" },
+    { href: "/espace-formation", label: "Formation" },
     { href: "/a-propos", label: "À propos" },
     { href: "/blog", label: "Blog" },
   ]

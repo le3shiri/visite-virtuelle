@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
+import Image from "next/image"
 import { Hotel, Building2, ShoppingBag, GraduationCap, Stethoscope, Factory } from "lucide-react"
 
 export const metadata = {
@@ -115,16 +116,37 @@ export default function SecteursPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 lg:pt-40 lg:pb-24 bg-gradient-to-b from-muted/50 to-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/modern-360-virtual-tour-hotel-lobby-immersive.jpg"
+            alt="Secteurs d'activité"
+            fill
+            className="object-cover opacity-10"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background/95 to-accent/20" />
+        </div>
+
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-semibold text-sm mb-6">
+              Nos Secteurs
+            </div>
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 text-balance">
               Des solutions pour tous les <span className="text-primary">secteurs d'activité</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed">
+            <p className="text-xl text-muted-foreground mb-8 text-pretty">
               Que vous soyez dans l'hôtellerie, l'immobilier, le commerce ou l'éducation, nos visites virtuelles 360°
               sont adaptées à vos besoins spécifiques.
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
+                <Link href="/contact">Demander un Devis</Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/tarifs">Voir nos Tarifs</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
@@ -252,7 +274,7 @@ export default function SecteursPage() {
                   <Button asChild size="lg">
                     <Link href="/contact">Contactez-nous</Link>
                   </Button>
-                  <Button asChild size="lg" variant="outline">
+                  <Button asChild variant="outline" size="lg">
                     <Link href="/tarifs">Voir nos Tarifs</Link>
                   </Button>
                 </div>

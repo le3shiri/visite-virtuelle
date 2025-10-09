@@ -3,6 +3,8 @@ import { Footer } from "@/components/footer"
 import { ContactForm } from "@/components/contact-form"
 import { Card, CardContent } from "@/components/ui/card"
 import { Mail, Phone, MapPin, Clock, MessageSquare } from "lucide-react"
+import Image from "next/image"
+import { Button } from "@/components/ui/button"
 
 export const metadata = {
   title: "Contact & Devis - Demandez votre Visite Virtuelle | Ladrissi Com",
@@ -16,21 +18,44 @@ export default function ContactPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 lg:pt-40 lg:pb-24 bg-gradient-to-b from-muted/50 to-background">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
+      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/modern-factory-warehouse-interior-360.jpg"
+            alt="Contactez-nous"
+            fill
+            className="object-cover opacity-10"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background/95 to-accent/20" />
+        </div>
+
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-semibold text-sm mb-6">
+              Contact
+            </div>
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 text-balance">
               Demandez votre <span className="text-primary">devis gratuitement</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed">
+            <p className="text-xl text-muted-foreground mb-8 text-pretty">
               Remplissez le formulaire ci-dessous et recevez une proposition personnalisée sous 24 heures
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
+                <a href="#formulaire">Remplir le formulaire</a>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <a href="https://wa.me/21269499987" target="_blank" rel="noopener noreferrer">
+                  WhatsApp Direct
+                </a>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="py-16 lg:py-24">
+      <section id="formulaire" className="py-16 lg:py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 max-w-7xl mx-auto">
             {/* Contact Info */}
@@ -52,7 +77,7 @@ export default function ContactPage() {
                     <div>
                       <div className="font-semibold mb-1">Téléphone</div>
                       <a href="tel:+212600000000" className="text-sm text-muted-foreground hover:text-primary">
-                        +212 69 49 99 87 
+                        +212 69 49 99 87
                       </a>
                     </div>
                   </div>
@@ -69,7 +94,7 @@ export default function ContactPage() {
                         rel="noopener noreferrer"
                         className="text-sm text-muted-foreground hover:text-primary"
                       >
-                        +212 69 49 99 87 
+                        +212 69 49 99 87
                       </a>
                     </div>
                   </div>
@@ -111,8 +136,6 @@ export default function ContactPage() {
                   </div>
                 </CardContent>
               </Card>
-
-              
             </div>
 
             {/* Contact Form */}
