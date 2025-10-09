@@ -1,5 +1,3 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
@@ -8,8 +6,6 @@ import { Eye, Users, TrendingUp, Zap, Building2, Hotel, ShoppingBag, GraduationC
 export default function HomePage() {
   return (
     <div className="min-h-screen">
-      <Navigation />
-
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-16 lg:pt-20">
         {/* Subtle background gradient */}
@@ -269,8 +265,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   )
 }

@@ -1,5 +1,3 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
@@ -72,8 +70,6 @@ const team = [
 export default function AProposPage() {
   return (
     <div className="min-h-screen">
-      <Navigation />
-
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -291,8 +287,6 @@ export default function AProposPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   )
 }

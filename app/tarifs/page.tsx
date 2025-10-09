@@ -1,5 +1,3 @@
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
@@ -113,8 +111,6 @@ const addons = [
 export default function TarifsPage() {
   return (
     <div className="min-h-screen">
-      <Navigation />
-
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -392,8 +388,6 @@ export default function TarifsPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   )
 }
