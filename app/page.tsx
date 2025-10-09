@@ -11,51 +11,94 @@ export default function HomePage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-16 lg:pt-20">
-        {/* Background Image/Video Placeholder */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/20 to-background" />
-          <img
-            src="/modern-360-virtual-tour-hotel-lobby-immersive.jpg"
-            alt="Visite virtuelle immersive"
-            className="w-full h-full object-cover opacity-40"
-          />
-        </div>
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden pt-16 lg:pt-20">
+        {/* Subtle background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-accent/5" />
 
-        {/* Hero Content */}
         <div className="container mx-auto px-4 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 text-balance leading-tight">
-              Vos espaces comme vous ne les avez <span className="text-primary">jamais vus</span>
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 text-pretty max-w-2xl mx-auto leading-relaxed">
-              Transformez vos espaces en expériences immersives 360°. Séduisez un nombre infini de visiteurs avec nos
-              visites virtuelles professionnelles.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button asChild size="lg" className="text-lg px-8 py-6">
-                <Link href="/contact">Demandez votre Devis</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="text-lg px-8 py-6 bg-transparent">
-                <Link href="/portfolio">Voir nos Réalisations</Link>
-              </Button>
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Left: Text Content */}
+            <div className="space-y-6 lg:space-y-8">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 my-7">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                </span>
+                <span className="text-sm font-medium text-primary">Technologie immersive 360°</span>
+              </div>
+
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-balance leading-tight">
+                Vos espaces comme vous ne les avez <span className="text-primary">jamais vus</span>
+              </h1>
+
+              <p className="text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed">
+                Transformez vos espaces en expériences immersives 360°. Séduisez un nombre infini de visiteurs avec nos
+                visites virtuelles professionnelles.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button asChild size="lg" className="text-base px-8 py-6 shadow-lg hover:shadow-xl transition-shadow">
+                  <Link href="/contact">Demandez votre Devis</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="text-base px-8 py-6 bg-transparent">
+                  <Link href="/portfolio">Voir nos Réalisations</Link>
+                </Button>
+              </div>
+
+              {/* Trust indicators */}
+              <div className="flex flex-wrap items-center gap-6 pt-4">
+                <div className="flex items-center gap-2">
+                  <div className="flex -space-x-2">
+                    <div className="w-8 h-8 rounded-full bg-primary/20 border-2 border-background" />
+                    <div className="w-8 h-8 rounded-full bg-accent/20 border-2 border-background" />
+                    <div className="w-8 h-8 rounded-full bg-primary/30 border-2 border-background" />
+                  </div>
+                  <span className="text-sm text-muted-foreground">+50 clients satisfaits</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="flex gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-4 h-4 fill-primary" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="text-sm text-muted-foreground">5.0 étoiles</span>
+                </div>
+              </div>
             </div>
 
-            {/* Video Demo CTA */}
-            <div className="mt-12">
-              <p className="text-sm text-muted-foreground mb-4">Découvrez nos visites virtuelles en action</p>
-              <div className="relative aspect-video max-w-3xl mx-auto rounded-xl overflow-hidden border-2 border-border shadow-2xl">
+            {/* Right: Video Demo */}
+            <div className="relative">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border-2 border-border shadow-2xl bg-muted">
                 <img
                   src="/360-virtual-tour-demo-video-thumbnail-play-button.jpg"
                   alt="Vidéo de démonstration"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors cursor-pointer">
-                  <div className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center">
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors cursor-pointer group">
+                  <div className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
                     <div className="w-0 h-0 border-t-[12px] border-t-transparent border-l-[20px] border-l-primary-foreground border-b-[12px] border-b-transparent ml-1" />
                   </div>
                 </div>
               </div>
+
+              {/* Floating badge */}
+              <div className="absolute -bottom-4 -left-4 bg-card border-2 border-border rounded-xl p-4 shadow-xl">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Eye className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-2xl font-bold">360°</p>
+                    <p className="text-xs text-muted-foreground">Vue immersive</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/10 rounded-full blur-2xl" />
+              <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
             </div>
           </div>
         </div>
