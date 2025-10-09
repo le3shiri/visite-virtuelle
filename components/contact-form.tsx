@@ -73,7 +73,42 @@ export function ContactForm() {
               <Input id="entreprise" name="entreprise" placeholder="Nom de votre entreprise" />
             </div>
           </div>
-
+                   <div className="space-y-3">
+            <Label htmlFor="pack" className="text-base font-semibold">
+              Pack souhaité *
+            </Label>
+            <Select name="pack" required>
+              <SelectTrigger className="h-12 text-base">
+                <SelectValue placeholder="Sélectionnez le pack qui vous intéresse" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="decouverte">
+                  <div className="flex flex-col">
+                    <span className="font-semibold">Pack Découverte</span>
+                    <span className="text-sm text-muted-foreground">2000 DH - Jusqu'à 60m²</span>
+                  </div>
+                </SelectItem>
+                <SelectItem value="professionnel">
+                  <div className="flex flex-col">
+                    <span className="font-semibold">Pack Professionnel ⭐</span>
+                    <span className="text-sm text-muted-foreground">5000 DH - Jusqu'à 200m²</span>
+                  </div>
+                </SelectItem>
+                <SelectItem value="sur-mesure">
+                  <div className="flex flex-col">
+                    <span className="font-semibold">Pack Sur Mesure</span>
+                    <span className="text-sm text-muted-foreground">10000 DH+ - Surface illimitée</span>
+                  </div>
+                </SelectItem>
+                <SelectItem value="non-defini">
+                  <div className="flex flex-col">
+                    <span className="font-semibold">Je ne sais pas encore</span>
+                    <span className="text-sm text-muted-foreground">Besoin de conseils</span>
+                  </div>
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
           <div className="space-y-2">
             <Label htmlFor="secteur">Secteur d'activité *</Label>
             <Select name="secteur" required>
