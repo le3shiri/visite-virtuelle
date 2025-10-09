@@ -46,24 +46,24 @@ const stats = [
 
 const team = [
   {
-    name: "Mohammed Ladrissi",
+    name: "Younes Ladrissi",
     role: "Fondateur & Photographe 360°",
     description:
-      "Passionné de photographie et de technologie, Mohammed a fondé Ladrissi Com pour apporter l'innovation des visites virtuelles à Tanger.",
+      "Passionné de photographie et de technologie, Younes a fondé Ladrissi Com pour apporter l'innovation des visites virtuelles à Tanger.",
     image: "/placeholder.svg?key=team1",
   },
   {
-    name: "Amina Bennani",
+    name: "abdelkader Ladrissi",
     role: "Responsable Développement Web",
     description:
-      "Experte en intégration web, Amina assure que chaque visite virtuelle s'intègre parfaitement aux sites de nos clients.",
+      "Expert en intégration web, Abdelkader assure que chaque visite virtuelle s'intègre parfaitement aux sites de nos clients.",
     image: "/placeholder.svg?key=team2",
   },
   {
-    name: "Youssef Alami",
+    name: "Anas ........",
     role: "Chef de Projet",
     description:
-      "Youssef coordonne tous nos projets pour garantir des livraisons dans les délais et conformes aux attentes de nos clients.",
+      "Anas coordonne tous nos projets pour garantir des livraisons dans les délais et conformes aux attentes de nos clients.",
     image: "/placeholder.svg?key=team3",
   },
 ]
