@@ -136,20 +136,7 @@ export default function EspaceFormationPage() {
               </Button>
             </div>
 
-            <div className="grid grid-cols-3 gap-8 mt-16 max-w-2xl mx-auto">
-              <div>
-                <div className="text-4xl font-bold text-primary mb-2">150+</div>
-                <div className="text-sm text-muted-foreground">Étudiants formés</div>
-              </div>
-              <div>
-                <div className="text-4xl font-bold text-primary mb-2">95%</div>
-                <div className="text-sm text-muted-foreground">Taux de satisfaction</div>
-              </div>
-              <div>
-                <div className="text-4xl font-bold text-primary mb-2">12</div>
-                <div className="text-sm text-muted-foreground">Formations disponibles</div>
-              </div>
-            </div>
+           
           </div>
         </div>
       </section>
