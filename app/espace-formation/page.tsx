@@ -74,32 +74,7 @@ export default function EspaceFormationPage() {
     },
   ]
 
-  const testimonials = [
-    {
-      name: "Youssef Alami",
-      role: "Photographe Immobilier",
-      image: "/professional-photographer-portrait.png",
-      content:
-        "La formation 360° m'a permis de lancer mon activité de visites virtuelles. Les formateurs sont excellents et le matériel est top !",
-      rating: 5,
-    },
-    {
-      name: "Fatima Bennis",
-      role: "Photographe Freelance",
-      image: "/female-photographer-portrait.png",
-      content:
-        "J'ai suivi la formation complète et je ne regrette rien. Aujourd'hui je travaille avec plusieurs agences immobilières à Tanger.",
-      rating: 5,
-    },
-    {
-      name: "Mehdi Tazi",
-      role: "Créateur de Contenu",
-      image: "/young-photographer-portrait.jpg",
-      content:
-        "Formation très pratique avec beaucoup de mises en situation réelles. J'ai appris en 3 mois ce qui m'aurait pris des années seul.",
-      rating: 5,
-    },
-  ]
+
 
   return (
     <div className="min-h-screen">
@@ -222,42 +197,7 @@ export default function EspaceFormationPage() {
         </div>
       </section>
 
-      <section className="py-20 lg:py-32">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6">Témoignages d'Anciens Étudiants</h2>
-            <p className="text-lg text-muted-foreground">Découvrez les retours de ceux qui ont suivi nos formations.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="border-2">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <Image
-                      src={testimonial.image || "/placeholder.svg"}
-                      alt={testimonial.name}
-                      width={60}
-                      height={60}
-                      className="rounded-full"
-                    />
-                    <div>
-                      <h4 className="font-bold">{testimonial.name}</h4>
-                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-1 mb-3">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-accent text-accent" />
-                    ))}
-                  </div>
-                  <p className="text-muted-foreground italic">&ldquo;{testimonial.content}&rdquo;</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+     
 
       {/* Application Form Section */}
       <section id="candidature" className="py-20 lg:py-32 bg-muted/30">
