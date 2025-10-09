@@ -78,7 +78,7 @@ const pricingPlans = [
 
 const addons = [
   {
-    name: "Photos HDR supplémentaires",
+    name: "Photos HDR 360 supplémentaires",
     price: "150 DH/photo",
     description: "Photos haute définition avec traitement HDR professionnel",
   },
@@ -99,7 +99,7 @@ const addons = [
   },
   {
     name: "Points d'information supplémentaires",
-    price: "100 DH/point",
+    price: "200 DH/point",
     description: "Ajout de tags interactifs avec texte, images ou liens",
   },
   {
