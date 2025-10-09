@@ -211,7 +211,6 @@ export default function BlogPage() {
                       {article.title}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-3">{article.excerpt}</p>
-                    
                   </CardContent>
                 </Card>
               ))}

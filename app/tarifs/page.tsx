@@ -15,7 +15,7 @@ const pricingPlans = [
     name: "Pack Découverte",
     description: "Idéal pour les petits commerces et espaces compacts",
     price: "À partir de 2 500 DH",
-    surface: "Jusqu'à 60m²",
+    surface: "Jusqu'à 35m²",
     features: [
       { name: "Visite virtuelle 360° simple", included: true },
       { name: "Jusqu'à 10 points de vue", included: true },
@@ -35,7 +35,7 @@ const pricingPlans = [
     name: "Pack Professionnel",
     description: "Le choix idéal pour la plupart des entreprises",
     price: "À partir de 5 500 DH",
-    surface: "Jusqu'à 200m²",
+    surface: "Jusqu'à 85m²",
     features: [
       { name: "Visite virtuelle 360° avancée", included: true },
       { name: "Jusqu'à 30 points de vue", included: true },
@@ -45,7 +45,7 @@ const pricingPlans = [
       { name: "Code embed personnalisé", included: true },
       { name: "Plan interactif 2D", included: true },
       { name: "Logo et branding", included: true },
-      { name: "Points d'information (10 max)", included: true },
+      { name: "Points d'information (2 max)", included: true },
       { name: "Support prioritaire", included: true },
     ],
     cta: "Choisir ce pack",
@@ -229,7 +229,7 @@ export default function TarifsPage() {
               <tbody>
                 <tr className="border-b border-border">
                   <td className="p-4 text-sm">Surface maximale</td>
-                  <td className="text-center p-4 text-sm">60m²</td>
+                  <td className="text-center p-4 text-sm">35m²</td>
                   <td className="text-center p-4 text-sm bg-primary/5">200m²</td>
                   <td className="text-center p-4 text-sm">Illimité</td>
                 </tr>
