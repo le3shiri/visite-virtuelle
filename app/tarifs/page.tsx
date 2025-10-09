@@ -167,8 +167,8 @@ export default function TarifsPage() {
                             <Check className="h-3 w-3 text-primary" />
                           </div>
                         ) : (
-                          <div className="w-5 h-5 rounded-full bg-muted flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <X className="h-3 w-3 text-muted-foreground bg-red" />
+                          <div className="w-5 h-5 rounded-full bg-red-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <X className="h-3 w-3 text-muted-foreground text-white" />
                           </div>
                         )}
                         <span className={`text-sm ${feature.included ? "text-foreground" : "text-muted-foreground"}`}>
