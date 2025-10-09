@@ -265,61 +265,10 @@ export default function BlogPage() {
       </section>
 
       {/* Resources Section */}
-      <section className="py-16 lg:py-24">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">Ressources gratuites</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Téléchargez nos guides et outils pour tirer le meilleur parti de votre visite virtuelle
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
-            {resources.map((resource) => (
-              <Card key={resource.title} className="border-2 hover:border-primary transition-all hover:shadow-lg">
-                <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mx-auto mb-4">
-                    <resource.icon className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">{resource.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{resource.description}</p>
-                  <Button variant="outline" size="sm" className="w-full bg-transparent">
-                    Télécharger
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+     
 
       {/* Newsletter Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-primary to-accent">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-6 text-primary-foreground text-balance">
-              Restez informé des dernières tendances
-            </h2>
-            <p className="text-lg text-primary-foreground/90 mb-8 text-pretty leading-relaxed">
-              Inscrivez-vous à notre newsletter pour recevoir nos conseils, études de cas et actualités sur les visites
-              virtuelles
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Votre email"
-                className="flex-1 px-4 py-3 rounded-lg border-2 border-transparent focus:border-primary-foreground focus:outline-none"
-              />
-              <Button size="lg" variant="secondary" className="px-8">
-                S'inscrire
-              </Button>
-            </div>
-            <p className="text-sm text-primary-foreground/70 mt-4">
-              Pas de spam. Désinscription possible à tout moment.
-            </p>
-          </div>
-        </div>
-      </section>
+      
 
       {/* CTA Section */}
       <section className="py-16 lg:py-24">
