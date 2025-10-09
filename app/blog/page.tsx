@@ -256,10 +256,7 @@ export default function BlogPage() {
                       {article.title}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed mb-4 line-clamp-2">{article.excerpt}</p>
-                    <Button variant="ghost" className="group/btn p-0 h-auto text-sm">
-                      Lire l'article
-                      <ArrowRight className="h-4 w-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                    </Button>
+                
                   </CardContent>
                 </Card>
               ))}
