@@ -20,7 +20,7 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-balance">
-              Demandez votre <span className="text-primary">devis gratuit</span>
+              Demandez votre <span className="text-primary">devis gratuitement</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground text-pretty leading-relaxed">
               Remplissez le formulaire ci-dessous et recevez une proposition personnalisée sous 24 heures
@@ -52,7 +52,7 @@ export default function ContactPage() {
                     <div>
                       <div className="font-semibold mb-1">Téléphone</div>
                       <a href="tel:+212600000000" className="text-sm text-muted-foreground hover:text-primary">
-                        +212 6 00 00 00 00
+                        +212 69 49 99 87 
                       </a>
                     </div>
                   </div>
@@ -64,12 +64,12 @@ export default function ContactPage() {
                     <div>
                       <div className="font-semibold mb-1">WhatsApp</div>
                       <a
-                        href="https://wa.me/212600000000"
+                        href="https://wa.me/21269499987"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-sm text-muted-foreground hover:text-primary"
                       >
-                        +212 6 00 00 00 00
+                        +212 69 49 99 87 
                       </a>
                     </div>
                   </div>
@@ -81,10 +81,10 @@ export default function ContactPage() {
                     <div>
                       <div className="font-semibold mb-1">Email</div>
                       <a
-                        href="mailto:contact@ladrissicom.ma"
+                        href="mailto:Ladrissicom@gmail.com"
                         className="text-sm text-muted-foreground hover:text-primary"
                       >
-                        contact@ladrissicom.ma
+                        Ladrissicom@gmail.com
                       </a>
                     </div>
                   </div>
@@ -95,7 +95,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <div className="font-semibold mb-1">Adresse</div>
-                      <p className="text-sm text-muted-foreground">Tanger, Maroc</p>
+                      <p className="text-sm text-muted-foreground">Avenue Moulay Smail immeuble farah num 2 tanger</p>
                     </div>
                   </div>
 
@@ -112,14 +112,7 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
 
-              <Card className="border-2 bg-gradient-to-br from-primary/5 to-accent/5">
-                <CardContent className="p-6">
-                  <h3 className="font-semibold mb-2">Réponse rapide garantie</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Nous nous engageons à vous répondre sous 24 heures maximum, du lundi au vendredi.
-                  </p>
-                </CardContent>
-              </Card>
+              
             </div>
 
             {/* Contact Form */}

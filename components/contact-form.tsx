@@ -138,20 +138,7 @@ export function ContactForm() {
             />
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="budget">Budget estimé</Label>
-            <Select name="budget">
-              <SelectTrigger>
-                <SelectValue placeholder="Sélectionnez votre budget" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="2500-5000">2 500 - 5 000 DH</SelectItem>
-                <SelectItem value="5000-10000">5 000 - 10 000 DH</SelectItem>
-                <SelectItem value="10000+">Plus de 10 000 DH</SelectItem>
-                <SelectItem value="non-defini">Budget non défini</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+        
 
           <Button type="submit" size="lg" className="w-full" disabled={isLoading}>
             {isLoading ? "Envoi en cours..." : "Envoyer ma demande de devis"}
