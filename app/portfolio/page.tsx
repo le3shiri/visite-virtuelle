@@ -1,10 +1,11 @@
+/*
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { PortfolioGallery } from "@/components/portfolio-gallery"
 import { Testimonials } from "@/components/testimonials"
 import Link from "next/link"
-import { MapPin } from "lucide-react"
+import { MapPin } from 'lucide-react'
 
 export const metadata = {
   title: "Portfolio - Nos Réalisations | Ladrissi Com",
@@ -168,7 +169,6 @@ export default function PortfolioPage() {
     <div className="min-h-screen">
       <Navigation />
 
-      {/* Hero Section */}
       <section className="pt-32 pb-16 lg:pt-40 lg:pb-24 bg-gradient-to-b from-muted/50 to-background">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
@@ -182,14 +182,12 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Portfolio Gallery */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <PortfolioGallery items={portfolioItems} />
         </div>
       </section>
 
-      {/* Interactive Map Section */}
       <section className="py-16 lg:py-24 bg-muted/30">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
@@ -213,7 +211,6 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
       <section className="py-16 lg:py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
@@ -227,7 +224,6 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-16 lg:py-24 bg-gradient-to-br from-primary to-accent">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
@@ -244,6 +240,23 @@ export default function PortfolioPage() {
         </div>
       </section>
 
+      <Footer />
+    </div>
+  )
+}
+*/
+
+import { Navigation } from "@/components/navigation"
+import { Footer } from "@/components/footer"
+
+export default function PortfolioPage() {
+  return (
+    <div className="min-h-screen">
+      <Navigation />
+      <div className="pt-32 pb-16 container mx-auto px-4">
+        <h1 className="text-4xl font-bold text-center">Page en construction</h1>
+        <p className="text-center text-muted-foreground mt-4">Cette page sera bientôt disponible.</p>
+      </div>
       <Footer />
     </div>
   )

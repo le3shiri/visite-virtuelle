@@ -12,7 +12,6 @@ export function Navigation() {
   const navLinks = [
     { href: "/", label: "Accueil" },
     { href: "/secteurs", label: "Secteurs" },
-    { href: "/portfolio", label: "Portfolio" },
     { href: "/tarifs", label: "Tarifs" },
     { href: "/a-propos", label: "À propos" },
     { href: "/blog", label: "Blog" },
