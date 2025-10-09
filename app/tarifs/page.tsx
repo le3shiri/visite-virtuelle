@@ -230,7 +230,7 @@ export default function TarifsPage() {
                 <tr className="border-b border-border">
                   <td className="p-4 text-sm">Surface maximale</td>
                   <td className="text-center p-4 text-sm">35m²</td>
-                  <td className="text-center p-4 text-sm bg-primary/5">200m²</td>
+                  <td className="text-center p-4 text-sm bg-primary/5">85m²</td>
                   <td className="text-center p-4 text-sm">Illimité</td>
                 </tr>
                 <tr className="border-b border-border">
