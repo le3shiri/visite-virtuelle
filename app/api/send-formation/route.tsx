@@ -8,7 +8,7 @@ export async function POST(request: Request) {
     const body = await request.json()
     const { name, email, phone, fileName } = body
 
-    const recipientEmail = "Anasahaddad788@gmail.com"
+    const recipientEmail = "satayman41@@gmail.com"
 
     const emailHtml = `
       <!DOCTYPE html>
