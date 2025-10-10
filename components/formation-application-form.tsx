@@ -5,16 +5,46 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { CheckCircle, Upload } from "lucide-react"
+import { CheckCircle, Upload, Loader2 } from "lucide-react"
 
 export function FormationApplicationForm() {
   const [submitted, setSubmitted] = useState(false)
   const [fileName, setFileName] = useState<string>("")
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 5000)
+    setIsLoading(true)
+
+    const formData = new FormData(e.currentTarget)
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      phone: formData.get("phone") as string,
+      fileName: fileName,
+    }
+
+    try {
+      const response = await fetch("/api/send-formation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+
+      if (response.ok) {
+        setSubmitted(true)
+        setTimeout(() => setSubmitted(false), 5000)
+      } else {
+        alert("Une erreur est survenue. Veuillez réessayer.")
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error)
+      alert("Une erreur est survenue. Veuillez réessayer.")
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,8 +130,20 @@ export function FormationApplicationForm() {
             </div>
           </div>
 
-          <Button type="submit" size="lg" className="w-full h-14 text-lg font-semibold bg-accent hover:bg-accent/90">
-            Envoyer ma candidature
+          <Button
+            type="submit"
+            size="lg"
+            className="w-full h-14 text-lg font-semibold bg-accent hover:bg-accent/90"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <>
+                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                Envoi en cours...
+              </>
+            ) : (
+              "Envoyer ma candidature"
+            )}
           </Button>
         </form>
       )}
