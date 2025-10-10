@@ -36,12 +36,7 @@ const values = [
   },
 ]
 
-const stats = [
-  { number: "50+", label: "Projets réalisés" },
-  { number: "40+", label: "Clients satisfaits" },
-  { number: "5 ans", label: "D'expérience" },
-  { number: "100%", label: "Satisfaction client" },
-]
+
 
 const team = [
   {
@@ -103,14 +98,7 @@ export default function AProposPage() {
               </Button>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 max-w-3xl mx-auto">
-              {stats.map((stat) => (
-                <div key={stat.label}>
-                  <div className="text-4xl font-bold text-primary mb-2">{stat.number}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
-                </div>
-              ))}
-            </div>
+           
           </div>
         </div>
       </section>
