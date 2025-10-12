@@ -18,7 +18,7 @@ const portfolioItems = [
     id: "1",
     title: "Visite Virtuelle Matterport",
     category: "Immobilier",
-    location: "Tanger, Maroc",
+    location: "",
     image: "/placeholder.svg?key=matterport1",
     description:
       "Découvrez cette visite virtuelle immersive créée avec la technologie Matterport. Explorez chaque détail en 3D.",
@@ -32,6 +32,25 @@ const portfolioItems = [
     ],
     embedCode: '<iframe width="100%" height="600px" src="https://my.matterport.com/show/?m=oyaicKWaEQw&play=1&tour=3&ts=3&hl=0&pin=0&back=1" frameborder="0" allowfullscreen allow="autoplay; fullscreen; web-share; xr-spatial-tracking;" style="height: 600px; min-height: 600px;"></iframe>',
     virtualTourUrl: "https://my.matterport.com/show/?m=oyaicKWaEQw&play=1&tour=3&ts=3&hl=0&pin=0&back=1",
+  },
+  {
+    id: "2",
+    title: "Visite Virtuelle Matterport",
+    category: "industry",
+    location: "",
+    image: "/placeholder.svg?key=matterport1",
+    description:
+      "Découvrez cette visite virtuelle immersive créée avec la technologie Matterport. Explorez chaque détail en 3D.",
+    features: [
+      "Visite 3D immersive",
+      "Navigation intuitive",
+      "Haute définition",
+      "Compatible VR",
+      "Mesures précises",
+      "Mode plan 3D",
+    ],
+    embedCode: '<iframe width="100%" height="600px" src="https://my.matterport.com/show?play=1&lang=en-US&m=UKMFGYYgU3T" frameborder="0" allowfullscreen allow="autoplay; fullscreen; web-share; xr-spatial-tracking;" style="height: 600px; min-height: 600px;"></iframe>',
+    virtualTourUrl: "https://my.matterport.com/show?play=1&lang=en-US&m=UKMFGYYgU3T",
   },
 ]
 
