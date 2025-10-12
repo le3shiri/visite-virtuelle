@@ -3,7 +3,7 @@ import { Resend } from "resend"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-const DESTINATION_EMAIL = "aymenelachiri2@icloud.com"
+const DESTINATION_EMAIL = "anasahaddad788@gmail.com"
 
 export async function POST(request: Request) {
   try {
