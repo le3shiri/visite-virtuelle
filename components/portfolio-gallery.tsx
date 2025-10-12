@@ -15,6 +15,7 @@ interface PortfolioItem {
   description: string
   features: string[]
   virtualTourUrl?: string
+  embedCode?: string
 }
 
 interface PortfolioGalleryProps {
@@ -50,20 +51,26 @@ export function PortfolioGallery({ items }: PortfolioGalleryProps) {
         {filteredItems.map((item) => (
           <Card
             key={item.id}
-            className="group cursor-pointer border-2 hover:border-primary transition-all hover:shadow-xl overflow-hidden"
-            onClick={() => setSelectedItem(item)}
+            className="group border-2 hover:border-primary transition-all hover:shadow-xl overflow-hidden"
           >
-            <div className="relative aspect-[4/3] overflow-hidden">
-              <img
-                src={item.image || "/placeholder.svg"}
-                alt={item.title}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              <Badge className="absolute top-4 left-4 bg-primary/90 backdrop-blur-sm">{item.category}</Badge>
-              <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                <h3 className="font-semibold text-lg mb-1">{item.title}</h3>
-                <div className="flex items-center gap-1 text-sm">
+            <div className={`relative overflow-hidden ${
+              item.embedCode ? 'h-[600px]' : 'aspect-[4/3]'
+            }`}>
+              {item.embedCode ? (
+                <div className="w-full h-full">
+                  <div dangerouslySetInnerHTML={{ __html: item.embedCode || '' }} />
+                </div>
+              ) : (
+                <img
+                  src={item.image || "/placeholder.svg"}
+                  alt={item.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              )}
+              <Badge className="absolute top-4 left-4 bg-primary/90 backdrop-blur-sm z-10">{item.category}</Badge>
+              <div className="absolute bottom-4 left-4 right-4 text-white z-10">
+                <h3 className="font-semibold text-lg mb-1 drop-shadow-lg">{item.title}</h3>
+                <div className="flex items-center gap-1 text-sm drop-shadow-lg">
                   <MapPin className="h-3 w-3" />
                   <span>{item.location}</span>
                 </div>
@@ -84,18 +91,24 @@ export function PortfolioGallery({ items }: PortfolioGalleryProps) {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative">
-              <img
-                src={selectedItem.image || "/placeholder.svg"}
-                alt={selectedItem.title}
-                className="w-full aspect-video object-cover rounded-t-2xl"
-              />
+              {selectedItem.embedCode ? (
+                <div className="w-full aspect-video rounded-t-2xl overflow-hidden">
+                  <div dangerouslySetInnerHTML={{ __html: selectedItem.embedCode }} />
+                </div>
+              ) : (
+                <img
+                  src={selectedItem.image || "/placeholder.svg"}
+                  alt={selectedItem.title}
+                  className="w-full aspect-video object-cover rounded-t-2xl"
+                />
+              )}
               <button
                 onClick={() => setSelectedItem(null)}
-                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-background/90 backdrop-blur-sm flex items-center justify-center hover:bg-background transition-colors"
+                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-background/90 backdrop-blur-sm flex items-center justify-center hover:bg-background transition-colors z-10"
               >
                 <X className="h-5 w-5" />
               </button>
-              <Badge className="absolute top-4 left-4 bg-primary/90 backdrop-blur-sm">{selectedItem.category}</Badge>
+              <Badge className="absolute top-4 left-4 bg-primary/90 backdrop-blur-sm z-10">{selectedItem.category}</Badge>
             </div>
 
             <div className="p-6 lg:p-8">
@@ -123,7 +136,7 @@ export function PortfolioGallery({ items }: PortfolioGalleryProps) {
                 </div>
               </div>
 
-              {selectedItem.virtualTourUrl && (
+              {selectedItem.virtualTourUrl && !selectedItem.embedCode && (
                 <Button asChild className="w-full sm:w-auto">
                   <a
                     href={selectedItem.virtualTourUrl}
@@ -135,6 +148,11 @@ export function PortfolioGallery({ items }: PortfolioGalleryProps) {
                     Voir la visite virtuelle
                   </a>
                 </Button>
+              )}
+              {selectedItem.embedCode && (
+                <div className="text-center text-sm text-muted-foreground">
+                  Utilisez la souris pour naviguer dans la visite virtuelle 3D ci-dessus
+                </div>
               )}
             </div>
           </div>

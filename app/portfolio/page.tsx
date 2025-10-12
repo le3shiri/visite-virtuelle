@@ -1,4 +1,4 @@
-/*
+
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
@@ -16,151 +16,22 @@ export const metadata = {
 const portfolioItems = [
   {
     id: "1",
-    title: "Hôtel Marina Bay",
-    category: "Hôtellerie",
-    location: "Tanger, Maroc",
-    image: "/placeholder.svg?key=hotel1",
-    description:
-      "Visite virtuelle complète d'un hôtel 5 étoiles avec 120 chambres, restaurant panoramique, spa et piscine. Intégration de points d'information interactifs pour présenter les services.",
-    features: [
-      "120 chambres photographiées",
-      "Restaurant et bar",
-      "Spa et piscine",
-      "Salles de conférence",
-      "Intégration site web",
-      "Version mobile optimisée",
-    ],
-    virtualTourUrl: "#",
-  },
-  {
-    id: "2",
-    title: "Résidence Les Jardins",
+    title: "Visite Virtuelle Matterport",
     category: "Immobilier",
     location: "Tanger, Maroc",
-    image: "/placeholder.svg?key=immo1",
+    image: "/placeholder.svg?key=matterport1",
     description:
-      "Projet immobilier neuf de 45 appartements. Visites virtuelles des appartements témoins et des espaces communs pour faciliter la pré-commercialisation.",
+      "Découvrez cette visite virtuelle immersive créée avec la technologie Matterport. Explorez chaque détail en 3D.",
     features: [
-      "3 types d'appartements",
-      "Espaces communs",
-      "Vue panoramique",
-      "Plans interactifs",
+      "Visite 3D immersive",
+      "Navigation intuitive",
+      "Haute définition",
+      "Compatible VR",
       "Mesures précises",
-      "Mode VR disponible",
+      "Mode plan 3D",
     ],
-    virtualTourUrl: "#",
-  },
-  {
-    id: "3",
-    title: "Showroom Design Plus",
-    category: "Commerce",
-    location: "Tanger, Maroc",
-    image: "/placeholder.svg?key=show1",
-    description:
-      "Showroom de mobilier haut de gamme sur 500m². Visite virtuelle avec tags produits cliquables et liens directs vers le catalogue en ligne.",
-    features: [
-      "500m² d'exposition",
-      "Tags produits interactifs",
-      "Liens e-commerce",
-      "Mise à jour mensuelle",
-      "Zoom haute définition",
-      "Catalogue intégré",
-    ],
-    virtualTourUrl: "#",
-  },
-  {
-    id: "4",
-    title: "Restaurant Le Détroit",
-    category: "Restauration",
-    location: "Tanger, Maroc",
-    image: "/placeholder.svg?key=resto1",
-    description:
-      "Restaurant gastronomique avec vue sur le détroit. Visite virtuelle mettant en valeur l'ambiance, la décoration et les différents espaces.",
-    features: [
-      "Salle principale",
-      "Terrasse panoramique",
-      "Cuisine ouverte",
-      "Salon privé",
-      "Ambiance sonore",
-      "Menu interactif",
-    ],
-    virtualTourUrl: "#",
-  },
-  {
-    id: "5",
-    title: "École Internationale",
-    category: "Éducation",
-    location: "Tanger, Maroc",
-    image: "/placeholder.svg?key=school1",
-    description:
-      "Campus scolaire moderne avec salles de classe, laboratoires, bibliothèque et installations sportives. Outil de recrutement pour les inscriptions.",
-    features: [
-      "Salles de classe",
-      "Laboratoires scientifiques",
-      "Bibliothèque",
-      "Installations sportives",
-      "Cantine",
-      "Espaces extérieurs",
-    ],
-    virtualTourUrl: "#",
-  },
-  {
-    id: "6",
-    title: "Villa Méditerranée",
-    category: "Immobilier",
-    location: "Tanger, Maroc",
-    image: "/placeholder.svg?key=villa1",
-    description:
-      "Villa de luxe de 400m² avec piscine et jardin. Visite virtuelle haute définition pour location saisonnière haut de gamme.",
-    features: ["5 chambres", "Piscine à débordement", "Jardin paysager", "Vue mer", "Garage double", "Photos HDR"],
-    virtualTourUrl: "#",
-  },
-  {
-    id: "7",
-    title: "Boutique Mode & Style",
-    category: "Commerce",
-    location: "Tanger, Maroc",
-    image: "/placeholder.svg?key=boutique1",
-    description:
-      "Boutique de prêt-à-porter de 150m². Visite virtuelle permettant de découvrir les collections et l'agencement du magasin.",
-    features: [
-      "Espace femme",
-      "Espace homme",
-      "Cabines d'essayage",
-      "Vitrine virtuelle",
-      "Collections saisonnières",
-      "Mise à jour trimestrielle",
-    ],
-    virtualTourUrl: "#",
-  },
-  {
-    id: "8",
-    title: "Riad Dar Tanja",
-    category: "Hôtellerie",
-    location: "Tanger, Maroc",
-    image: "/placeholder.svg?key=riad1",
-    description:
-      "Riad traditionnel rénové avec 8 suites. Visite virtuelle mettant en valeur l'architecture authentique et le charme marocain.",
-    features: [
-      "8 suites uniques",
-      "Patio central",
-      "Terrasse panoramique",
-      "Hammam traditionnel",
-      "Salon marocain",
-      "Narration audio",
-    ],
-    virtualTourUrl: "#",
-  },
-  {
-    id: "9",
-    title: "Centre Médical Atlas",
-    category: "Santé",
-    location: "Tanger, Maroc",
-    image: "/placeholder.svg?key=medical1",
-    description:
-      "Centre médical moderne avec 15 cabinets spécialisés. Visite virtuelle rassurante pour les nouveaux patients.",
-    features: ["Salle d'attente", "15 cabinets", "Laboratoire", "Radiologie", "Pharmacie", "Accès handicapés"],
-    virtualTourUrl: "#",
+    embedCode: '<iframe width="100%" height="600px" src="https://my.matterport.com/show/?m=oyaicKWaEQw&play=1&tour=3&ts=3&hl=0&pin=0&back=1" frameborder="0" allowfullscreen allow="autoplay; fullscreen; web-share; xr-spatial-tracking;" style="height: 600px; min-height: 600px;"></iframe>',
+    virtualTourUrl: "https://my.matterport.com/show/?m=oyaicKWaEQw&play=1&tour=3&ts=3&hl=0&pin=0&back=1",
   },
 ]
 
@@ -244,20 +115,20 @@ export default function PortfolioPage() {
     </div>
   )
 }
-*/
 
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 
-export default function PortfolioPage() {
-  return (
-    <div className="min-h-screen">
-      <Navigation />
-      <div className="pt-32 pb-16 container mx-auto px-4">
-        <h1 className="text-4xl font-bold text-center">Page en construction</h1>
-        <p className="text-center text-muted-foreground mt-4">Cette page sera bientôt disponible.</p>
-      </div>
-      <Footer />
-    </div>
-  )
-}
+// import { Navigation } from "@/components/navigation"
+// import { Footer } from "@/components/footer"
+
+// export default function PortfolioPage() {
+//   return (
+//     <div className="min-h-screen">
+//       <Navigation />
+//       <div className="pt-32 pb-16 container mx-auto px-4">
+//         <h1 className="text-4xl font-bold text-center">Page en construction</h1>
+//         <p className="text-center text-muted-foreground mt-4">Cette page sera bientôt disponible.</p>
+//       </div>
+//       <Footer />
+//     </div>
+//   )
+// }
