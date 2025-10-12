@@ -97,7 +97,7 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      <section className="py-16 lg:py-24 bg-muted/30">
+      {/* <section className="py-16 lg:py-24 bg-muted/30">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">Nos projets à Tanger</h2>
@@ -118,7 +118,7 @@ export default function PortfolioPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="py-16 lg:py-24">
         <div className="container mx-auto px-4 lg:px-8">

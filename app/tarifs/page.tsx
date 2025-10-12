@@ -14,7 +14,7 @@ const pricingPlans = [
   {
     name: "Pack Découverte",
     description: "Idéal pour les petits commerces et espaces compacts",
-    price: "À partir de 2 500 DH",
+    price: "À partir de 3 000 DH",
     surface: "Jusqu'à 35m²",
     features: [
       { name: "Visite virtuelle 360° simple", included: true },

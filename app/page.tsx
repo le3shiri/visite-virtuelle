@@ -67,16 +67,18 @@ export default function HomePage() {
             {/* Right: Video Demo */}
             <div className="relative">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border-2 border-border shadow-2xl bg-muted">
-                <img
-                  src="/360-virtual-tour-demo-video-thumbnail-play-button.jpg"
-                  alt="Vidéo de démonstration"
+                <video 
+                  src="/1012.mp4"
                   className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors cursor-pointer group">
-                  <div className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
-                    <div className="w-0 h-0 border-t-[12px] border-t-transparent border-l-[20px] border-l-primary-foreground border-b-[12px] border-b-transparent ml-1" />
-                  </div>
-                </div>
+                  controls
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                >
+                  Votre navigateur ne supporte pas la lecture de vidéos.
+                </video>
               </div>
 
               {/* Floating badge */}
@@ -179,7 +181,8 @@ export default function HomePage() {
               <Card className="h-full border-2 hover:border-primary transition-all hover:shadow-lg">
                 <CardContent className="p-6">
                   <div className="aspect-square rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-4">
-                    <Hotel className="h-12 w-12 text-primary" />
+                    {/* <Hotel className="h-12 w-12 text-primary" /> */}
+                    <img src="/modern-360-virtual-tour-hotel-lobby-immersive.jpg" alt="" className=" text-accent"/>
                   </div>
                   <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
                     Hôtellerie & Restauration
@@ -193,7 +196,8 @@ export default function HomePage() {
               <Card className="h-full border-2 hover:border-primary transition-all hover:shadow-lg">
                 <CardContent className="p-6">
                   <div className="aspect-square rounded-lg bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center mb-4">
-                    <Building2 className="h-12 w-12 text-accent" />
+                    {/* <Building2 className="h-12 w-12 text-accent" /> */}
+                    <img src="/modern-apartment-interior-360.jpg" alt="" />
                   </div>
                   <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">Immobilier</h3>
                   <p className="text-sm text-muted-foreground">Appartements, villas, bureaux, projets immobiliers</p>
@@ -205,7 +209,8 @@ export default function HomePage() {
               <Card className="h-full border-2 hover:border-primary transition-all hover:shadow-lg">
                 <CardContent className="p-6">
                   <div className="aspect-square rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-4">
-                    <ShoppingBag className="h-12 w-12 text-primary" />
+                    {/* <ShoppingBag className="h-12 w-12 text-primary" /> */}
+                    <img src="/modern-retail-store-showroom-360.jpg" alt="" />
                   </div>
                   <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
                     Commerce & Retail
@@ -219,7 +224,8 @@ export default function HomePage() {
               <Card className="h-full border-2 hover:border-primary transition-all hover:shadow-lg">
                 <CardContent className="p-6">
                   <div className="aspect-square rounded-lg bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center mb-4">
-                    <GraduationCap className="h-12 w-12 text-accent" />
+                    {/* <GraduationCap className="h-12 w-12 text-accent" /> */}
+                    <img src="/modern-medical-clinic-reception-360.jpg" alt="" />
                   </div>
                   <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
                     Éducation & Santé

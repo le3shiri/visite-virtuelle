@@ -162,11 +162,10 @@ export default function SecteursPage() {
                 {/* Image */}
                 <div className="w-full lg:w-1/2">
                   <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border-2 border-border shadow-xl">
-                    <div className={`absolute inset-0 bg-gradient-to-br ${sector.color}`} />
                     <img
                       src={sector.image || "/placeholder.svg"}
                       alt={sector.title}
-                      className="w-full h-full object-cover mix-blend-overlay"
+                      className="w-full h-full object-cover"
                     />
                     <div className="absolute top-4 left-4 w-16 h-16 rounded-xl bg-background/90 backdrop-blur-sm flex items-center justify-center">
                       <sector.icon className="h-8 w-8 text-primary" />
