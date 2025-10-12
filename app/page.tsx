@@ -36,9 +36,9 @@ export default function HomePage() {
                 <Button asChild size="lg" className="text-base px-8 py-6 shadow-lg hover:shadow-xl transition-shadow">
                   <Link href="/contact">Demandez votre Devis</Link>
                 </Button>
-                {/* <Button asChild size="lg" variant="outline" className="text-base px-8 py-6 bg-transparent">
+                <Button asChild size="lg" variant="outline" className="text-base px-8 py-6 bg-transparent">
                   <Link href="/portfolio">Voir nos Réalisations</Link>
-                </Button> */}
+                </Button>
               </div>
 
               {/* Trust indicators */}
