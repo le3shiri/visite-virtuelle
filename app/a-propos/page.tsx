@@ -40,25 +40,25 @@ const values = [
 
 const team = [
   {
-    name: "Youness Ladrissi",
-    role: "Fondateur & Photographe 360°",
-    description:
-      "Passionné de photographie et de technologie, Youness a fondé Ladrissi Com pour apporter l'innovation des visites virtuelles à Tanger.",
-    image: "/placeholder.svg?key=team1",
-  },
-  {
-    name: "Abdelkader Ladrissi",
-    role: "Responsable Développement Web",
-    description:
-      "Expert en intégration web, Abdelkader assure que chaque visite virtuelle s'intègre parfaitement aux sites de nos clients.",
-    image: "/placeholder.svg?key=team2",
-  },
-  {
-    name: "Anas ..",
+    name: "Anas Ahaddad",
     role: "Chef de Projet",
     description:
       "Anas coordonne tous nos projets pour garantir des livraisons dans les délais et conformes aux attentes de nos clients.",
-    image: "/placeholder.svg?key=team3",
+    image: "/ladrissi-team-03.jpg?key=team3",
+  },
+  {
+    name: "Youness Ladrissi",
+    role: "Directeur des operations",
+    description:
+      "Passionné de photographie et de technologie, Youness a fondé Ladrissi Com pour apporter l'innovation des visites virtuelles à Tanger.",
+    image: "/ladrissi team-02.jpg?key=team1",
+  },
+  {
+    name: "Abdelkader Ladrissi",
+    role: "Responsable technique et execution",
+    description:
+      "Expert en intégration web, Abdelkader assure que chaque visite virtuelle s'intègre parfaitement aux sites de nos clients.",
+    image: "/ladrissi team-01.jpg?key=team2",
   },
 ]
 
@@ -130,7 +130,7 @@ export default function AProposPage() {
 
             <div className="relative">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden border-2 border-border shadow-xl">
-                <img src="/placeholder.svg?key=story1" alt="Notre équipe" className="w-full h-full object-cover" />
+                <img src="/banner.jpeg?key=story1" alt="Notre équipe" className="w-full h-full object-cover" />
               </div>
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center">
                 <Camera className="h-16 w-16 text-primary-foreground" />

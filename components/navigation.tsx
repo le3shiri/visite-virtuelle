@@ -16,7 +16,7 @@ export function Navigation() {
     { href: "/portfolio", label: "Portfolio" },
     { href: "/espace-formation", label: "Formation" },
     { href: "/a-propos", label: "À propos" },
-    { href: "/blog", label: "Blog" },
+    // { href: "/blog", label: "Blog" },
   ]
 
   return (
