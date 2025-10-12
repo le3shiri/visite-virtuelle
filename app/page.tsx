@@ -36,9 +36,9 @@ export default function HomePage() {
                 <Button asChild size="lg" className="text-base px-8 py-6 shadow-lg hover:shadow-xl transition-shadow">
                   <Link href="/contact">Demandez votre Devis</Link>
                 </Button>
-                <Button asChild size="lg" variant="outline" className="text-base px-8 py-6 bg-transparent">
+                {/* <Button asChild size="lg" variant="outline" className="text-base px-8 py-6 bg-transparent">
                   <Link href="/portfolio">Voir nos Réalisations</Link>
-                </Button>
+                </Button> */}
               </div>
 
               {/* Trust indicators */}
@@ -49,7 +49,7 @@ export default function HomePage() {
                     <div className="w-8 h-8 rounded-full bg-accent/20 border-2 border-background" />
                     <div className="w-8 h-8 rounded-full bg-primary/30 border-2 border-background" />
                   </div>
-                  <span className="text-sm text-muted-foreground">+50 clients satisfaits</span>
+                  {/* <span className="text-sm text-muted-foreground">+50 clients satisfaits</span> */}
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="flex gap-0.5">

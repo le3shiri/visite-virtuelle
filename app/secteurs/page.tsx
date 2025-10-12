@@ -215,9 +215,9 @@ export default function SecteursPage() {
                     <Button asChild size="lg">
                       <Link href="/contact">Demander un Devis</Link>
                     </Button>
-                    <Button asChild size="lg" variant="outline">
+                    {/* <Button asChild size="lg" variant="outline">
                       <Link href="/portfolio">Voir des Exemples</Link>
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               </div>
