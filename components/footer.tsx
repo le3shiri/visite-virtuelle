@@ -10,7 +10,7 @@ export function Footer() {
           {/* Company Info */}
           <div>
             <Image
-              src="/logo-ladrissi-com-Black.png"
+              src="/logo-ladrissi-com.png"
               alt="Ladrissi Com"
               width={180}
               height={60}

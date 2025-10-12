@@ -26,7 +26,7 @@ export function Navigation() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/logo-ladrissi-com-Black.png"
+              src="/Logo-Ladrissi-com.png"
               alt="Ladrissi Com"
               width={180}
               height={60}
