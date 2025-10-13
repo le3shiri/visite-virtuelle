@@ -16,7 +16,7 @@ const packs = [
   {
     id: "decouverte" as const,
     name: "Pack Découverte",
-    price: "2 500 DH",
+    price: "3 000 DH",
     surface: "Jusqu'à 35m²",
     description: "Idéal pour les petits commerces",
     features: ["Visite 360° simple", "10 points de vue", "10 photos HD", "Hébergement 1 an"],
