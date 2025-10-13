@@ -158,7 +158,7 @@ export default function ContactPage() {
                 <CardContent className="p-6">
                   <h3 className="font-semibold mb-2">Combien coûte une visite virtuelle ?</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Nos tarifs commencent à 2 500 DH pour le Pack Découverte (jusqu'à 60m²). Le prix varie selon la
+                    Nos tarifs commencent à 3 000 DH pour le Pack Découverte (jusqu'à 60m²). Le prix varie selon la
                     surface, le nombre de points de vue et les options choisies. Demandez un devis personnalisé pour
                     obtenir un prix exact.
                   </p>
