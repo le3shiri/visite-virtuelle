@@ -137,7 +137,7 @@ export default function SecteursPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
-                <Link href="/contact">Demander un Devis</Link>
+                <Link href="/contact">Reserver votre visite</Link>
               </Button>
               <Button asChild variant="outline" size="lg">
                 <Link href="/tarifs">Voir nos Tarifs</Link>
@@ -212,7 +212,7 @@ export default function SecteursPage() {
 
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button asChild size="lg">
-                      <Link href="/contact">Demander un Devis</Link>
+                      <Link href="/contact">Reserver votre visite</Link>
                     </Button>
                     {/* <Button asChild size="lg" variant="outline">
                       <Link href="/portfolio">Voir des Exemples</Link>

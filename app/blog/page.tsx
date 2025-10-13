@@ -284,7 +284,7 @@
 //                 </p>
 //                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
 //                   <Button asChild size="lg">
-//                     <Link href="/contact">Demander un Devis</Link>
+//                     <Link href="/contact">Reserver votre visite</Link>
 //                   </Button>
 //                   <Button asChild variant="outline" size="lg">
 //                     <Link href="/portfolio">Voir nos Réalisations</Link>

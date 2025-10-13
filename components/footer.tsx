@@ -90,7 +90,7 @@ export function Footer() {
                   href="/contact"
                   className="inline-block mt-2 text-primary hover:text-primary/80 transition-colors font-medium"
                 >
-                  Demander un devis →
+                  Reserver votre visite →
                 </Link>
               </li>
             </ul>

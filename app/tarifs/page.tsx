@@ -70,7 +70,7 @@ const pricingPlans = [
       { name: "Mises à jour régulières", included: true },
       { name: "Support dédié 24/7", included: true },
     ],
-    cta: "Demander un devis",
+    cta: "Reserver votre visite",
     popular: false,
   },
 ]
@@ -137,7 +137,7 @@ export default function TarifsPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-accent hover:bg-accent/90">
-                <Link href="/contact">Demander un Devis</Link>
+                <Link href="/contact">Reserver votre visite</Link>
               </Button>
               <Button asChild variant="outline" size="lg">
                 <Link href="/portfolio">Voir des Exemples</Link>
@@ -374,7 +374,7 @@ export default function TarifsPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" variant="secondary" className="text-lg px-8 py-6">
-                <Link href="/contact">Demander un Devis</Link>
+                <Link href="/contact">Reserver votre visite</Link>
               </Button>
               <Button
                 asChild
