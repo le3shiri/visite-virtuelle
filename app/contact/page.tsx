@@ -41,7 +41,7 @@ export default function ContactPage() {
                 <a href="#formulaire">Remplir le formulaire</a>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <a href="https://wa.me/21269499987" target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/message/2LESIDK3LKGQK1 " target="_blank" rel="noopener noreferrer">
                   WhatsApp Direct
                 </a>
               </Button>
