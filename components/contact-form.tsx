@@ -63,6 +63,7 @@ export function ContactForm() {
       telephone: formData.get("telephone"),
       entreprise: formData.get("entreprise"),
       adresse: formData.get("adresse"),
+      dateTournage: formData.get("date-tournage"),
       secteur: formData.get("secteur"),
       typeEspace: formData.get("type-espace"),
       surface: formData.get("surface"),
@@ -236,6 +237,11 @@ export function ContactForm() {
               <div className="space-y-2 mt-6">
                 <Label htmlFor="adresse">Adresse du lieu à photographier *</Label>
                 <Input id="adresse" name="adresse" placeholder="Adresse complète" required />
+              </div>
+
+              <div className="space-y-2 mt-6">
+                <Label htmlFor="date-tournage">Date de tournage souhaitée *</Label>
+                <Input id="date-tournage" name="date-tournage" type="date" required />
               </div>
             </div>
           </div>

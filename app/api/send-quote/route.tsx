@@ -16,6 +16,7 @@ export async function POST(request: Request) {
       telephone,
       entreprise,
       adresse,
+      dateTournage,
       secteur,
       typeEspace,
       surface,
@@ -42,6 +43,7 @@ export async function POST(request: Request) {
         <li><strong>Téléphone :</strong> ${telephone}</li>
         <li><strong>Entreprise :</strong> ${entreprise}</li>
         <li><strong>Adresse du lieu :</strong> ${adresse}</li>
+        <li><strong>Date de tournage souhaitée :</strong> ${dateTournage ? new Date(dateTournage).toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'Non spécifiée'}</li>
       </ul>
     `
 
