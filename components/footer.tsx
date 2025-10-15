@@ -72,17 +72,17 @@ export function Footer() {
             <ul className="flex flex-col gap-3 text-sm text-muted-foreground">
               <li>
                 <a
-                  href="mailto:contact@ladrissicom.ma"
+                  href="mailto:ladrissicom@gmail.com"
                   className="flex items-center gap-2 hover:text-foreground transition-colors"
                 >
                   <Mail className="h-4 w-4" />
-                  contact@ladrissicom.ma
+                  ladrissicom@gmail.com
                 </a>
               </li>
               <li>
-                <a href="tel:+212600000000" className="flex items-center gap-2 hover:text-foreground transition-colors">
+                <a href="tel:+212669499987" className="flex items-center gap-2 hover:text-foreground transition-colors">
                   <Phone className="h-4 w-4" />
-                  +212 6 00 00 00 00
+                  +212 6 69 49 99 87
                 </a>
               </li>
               <li>
