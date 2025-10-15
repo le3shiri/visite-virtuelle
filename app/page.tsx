@@ -34,7 +34,7 @@ export default function HomePage() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="text-base px-8 py-6 shadow-lg hover:shadow-xl transition-shadow">
-                  <Link href="/contact">Demandez votre Devis</Link>
+                  <Link href="/contact">Reserver votre visite </Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="text-base px-8 py-6 bg-transparent">
                   <Link href="/portfolio">Voir nos Réalisations</Link>
