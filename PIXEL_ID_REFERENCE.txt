@@ -1,0 +1,22 @@
+Your Facebook Pixel ID: 1379895966809439
+
+To use this in your project:
+
+1. Create or update .env.local file with:
+   NEXT_PUBLIC_FACEBOOK_PIXEL_ID=1379895966809439
+
+2. The pixel is already configured as a fallback in lib/fbpixel.js
+
+3. Build and deploy to production:
+   npm run build
+   npm start
+
+4. Verify the pixel is working:
+   - Open your production site
+   - Open browser DevTools (F12)
+   - Go to Network tab
+   - Filter by "facebook"
+   - Navigate between pages
+   - You should see requests to facebook.com/tr
+
+Note: The pixel will ONLY work in production mode, not on localhost.

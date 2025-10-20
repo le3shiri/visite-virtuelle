@@ -7,6 +7,8 @@ import { Footer } from "@/components/footer"
 import { FloatingWhatsApp } from "@/components/floating-cta"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
+import FacebookPixelScript from "@/components/FacebookPixelScript"
+import FacebookPixel from "@/components/FacebookPixel"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -23,7 +25,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
+      <head>
+        <FacebookPixelScript />
+      </head>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}>
+        <Suspense fallback={null}>
+          <FacebookPixel />
+        </Suspense>
         <Navigation />
         <Suspense fallback={null}>{children}</Suspense>
         <Footer />

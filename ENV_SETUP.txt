@@ -1,0 +1,14 @@
+# Environment Variable Setup for Facebook Pixel
+
+Add this to your .env.local file:
+
+NEXT_PUBLIC_FACEBOOK_PIXEL_ID=1379895966809439
+
+This is your actual Facebook Pixel ID from Facebook Business Manager.
+
+To find your Pixel ID:
+1. Go to Facebook Events Manager (business.facebook.com/events_manager)
+2. Select your pixel
+3. Copy the Pixel ID from the top of the page
+
+Note: The .env.local file is gitignored and won't be committed to your repository.
