@@ -51,7 +51,7 @@ export function Navigation() {
           {/* CTA Button */}
           <div className="hidden lg:flex items-center gap-4">
             <Button asChild size="lg">
-              <Link href="/contact">Obtenir un Devis</Link>
+              <Link href="/contact">Reserver Maintenant</Link>
             </Button>
           </div>
 
