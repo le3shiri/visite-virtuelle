@@ -76,7 +76,7 @@ export function Navigation() {
                 </Link>
               ))}
               <Button asChild className="w-full mt-2">
-                <Link href="/contact">Obtenir un Devis</Link>
+                <Link href="/contact">Reserver votre visite </Link>
               </Button>
             </div>
           </div>
