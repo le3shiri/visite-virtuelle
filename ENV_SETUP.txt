@@ -4,6 +4,7 @@ Add this to your .env.local file:
 
 NEXT_PUBLIC_FACEBOOK_PIXEL_ID=1379895966809439
 
+
 This is your actual Facebook Pixel ID from Facebook Business Manager.
 
 To find your Pixel ID:
