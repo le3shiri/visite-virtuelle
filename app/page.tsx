@@ -2,6 +2,10 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
 import { Eye, Users, TrendingUp, Zap, Building2, Hotel, ShoppingBag, GraduationCap } from "lucide-react"
+import { PortfolioSlider } from "@/components/portfolio-slider"
+import { portfolioItems } from "@/data/portfolio-items"
+import { PricingCards } from "@/components/pricing-cards"
+import { pricingPlans } from "@/data/pricing-plans"
 
 export default function HomePage() {
   return (
@@ -98,6 +102,50 @@ export default function HomePage() {
               <div className="absolute -top-4 -right-4 w-24 h-24 bg-accent/10 rounded-full blur-2xl" />
               <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-primary/10 rounded-full blur-3xl" />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Portfolio Preview Section - Moved to second position */}
+      <section className="py-12 lg:py-16 bg-muted/30">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center mb-8 lg:mb-12">
+            <h2 className="text-2xl lg:text-4xl font-bold mb-3 text-balance">
+              Découvrez nos <span className="text-primary">réalisations</span>
+            </h2>
+            <p className="text-base text-muted-foreground max-w-2xl mx-auto text-pretty">
+              Explorez nos visites virtuelles 360° et plongez dans des expériences immersives
+            </p>
+          </div>
+
+          <PortfolioSlider items={portfolioItems} />
+
+          <div className="text-center mt-6">
+            <Button asChild size="default" variant="outline">
+              <Link href="/portfolio">Voir tous les projets →</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section - Third position */}
+      <section className="py-12 lg:py-16">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center mb-8 lg:mb-12">
+            <h2 className="text-2xl lg:text-4xl font-bold mb-3 text-balance">
+              Des <span className="text-primary">tarifs transparents</span> pour tous
+            </h2>
+            <p className="text-base text-muted-foreground max-w-2xl mx-auto text-pretty">
+              Choisissez le pack qui correspond à vos besoins et votre budget
+            </p>
+          </div>
+
+          <PricingCards plans={pricingPlans} />
+
+          <div className="text-center mt-6">
+            <Button asChild size="default" variant="outline">
+              <Link href="/tarifs">Voir tous les détails →</Link>
+            </Button>
           </div>
         </div>
       </section>
@@ -243,8 +291,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Sectors Preview */}
       
       {/* CTA Section */}
       <section className="py-16 lg:py-24 bg-gradient-to-br from-primary to-accent">

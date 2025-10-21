@@ -3,77 +3,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 import { Check, X, Sparkles } from "lucide-react"
 import Image from "next/image"
+import { pricingPlans } from "@/data/pricing-plans"
 
 export const metadata = {
   title: "Tarifs & Offres - Visites Virtuelles 360° | Ladrissi Com",
   description:
     "Découvrez nos packs de visites virtuelles adaptés à tous les budgets. Pack Découverte, Professionnel et Sur Mesure.",
 }
-
-const pricingPlans = [
-  {
-    name: "Pack Découverte",
-    description: "Idéal pour les petits commerces et espaces compacts",
-    price: "À partir de 3 000 DH",
-    surface: "Jusqu'à 35m²",
-    features: [
-      { name: "Visite virtuelle 360° simple", included: true },
-      { name: "Jusqu'à 10 points de vue", included: true },
-      { name: "Photos HD (10 photos)", included: true },
-      { name: "Hébergement 1 an", included: true },
-      { name: "Lien de partage", included: true },
-      { name: "Intégration site web", included: false },
-      { name: "Photos HDR professionnelles", included: false },
-      { name: "Storytelling & voix off", included: false },
-      { name: "Points d'information interactifs", included: false },
-      { name: "Mise à jour incluse", included: false },
-    ],
-    cta: "Choisir ce pack",
-    popular: false,
-  },
-  {
-    name: "Pack Professionnel",
-    description: "Le choix idéal pour la plupart des entreprises",
-    price: "À partir de 5 500 DH",
-    surface: "Jusqu'à 85m²",
-    features: [
-      { name: "Visite virtuelle 360° avancée", included: true },
-      { name: "Jusqu'à 30 points de vue", included: true },
-      { name: "Photos HDR professionnelles (30 photos)", included: true },
-      { name: "Hébergement 2 ans", included: true },
-      { name: "Intégration site web complète", included: true },
-      { name: "Code embed personnalisé", included: true },
-      { name: "Plan interactif 2D", included: true },
-      { name: "Logo et branding", included: true },
-      { name: "Points d'information (2 max)", included: true },
-      { name: "Support prioritaire", included: true },
-    ],
-    cta: "Choisir ce pack",
-    popular: true,
-  },
-  {
-    name: "Pack Sur Mesure",
-    description: "Solution personnalisée pour projets d'envergure",
-    price: "Sur devis",
-    surface: "Sans limite",
-    features: [
-      { name: "Visite virtuelle 360° premium", included: true },
-      { name: "Points de vue illimités", included: true },
-      { name: "Photos HDR professionnelles illimitées", included: true },
-      { name: "Hébergement illimité", included: true },
-      { name: "Scénarisation personnalisée", included: true },
-      { name: "Voix off professionnelle", included: true },
-      { name: "Storytelling sur mesure", included: true },
-      { name: "Points d'information illimités", included: true },
-      { name: "Guidage interactif", included: true },
-      { name: "Intégration CRM/PMS", included: true },
-      { name: "Mises à jour régulières", included: true },
-      { name: "Support dédié 24/7", included: true },
-    ],
-    cta: "Reserver votre visite",
-    popular: false,
-  },
-]
 
 const addons = [
   {
