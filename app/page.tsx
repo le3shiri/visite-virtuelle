@@ -102,72 +102,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="py-16 lg:py-24 bg-muted/30">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-12 lg:mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold mb-4 text-balance">
-              Pourquoi choisir les visites virtuelles ?
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
-              Dépassez les limites de la présence physique et touchez un public illimité
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            <Card className="border-2 hover:border-primary/50 transition-colors">
-              <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <Users className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Visiteurs Illimités</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Présence physique = dizaines de clients par jour. Visite virtuelle = nombre infini de visiteurs 24/7
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 hover:border-primary/50 transition-colors">
-              <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                  <Eye className="h-6 w-6 text-accent" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Expérience Immersive</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Permettez à vos clients de découvrir vos espaces comme s'ils y étaient, depuis n'importe où
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 hover:border-primary/50 transition-colors">
-              <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <TrendingUp className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Augmentez vos Ventes</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Les visites virtuelles augmentent la confiance et accélèrent les décisions d'achat
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-2 hover:border-primary/50 transition-colors">
-              <CardContent className="pt-6">
-                <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                  <Zap className="h-6 w-6 text-accent" />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Démarquez-vous</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Modernisez votre image et surpassez vos concurrents avec une technologie innovante
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Sectors Preview */}
-      <section className="py-16 lg:py-24">
+     <section className="py-16 lg:py-24">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-12 lg:mb-16">
             <h2 className="text-3xl lg:text-5xl font-bold mb-4 text-balance">Tous les secteurs d'activité</h2>
@@ -244,6 +179,73 @@ export default function HomePage() {
         </div>
       </section>
 
+
+      {/* Benefits Section */}
+      <section className="py-16 lg:py-24 bg-muted/30">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center mb-12 lg:mb-16">
+            <h2 className="text-3xl lg:text-5xl font-bold mb-4 text-balance">
+              Pourquoi choisir les visites virtuelles ?
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty">
+              Dépassez les limites de la présence physique et touchez un public illimité
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            <Card className="border-2 hover:border-primary/50 transition-colors">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <Users className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Visiteurs Illimités</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Présence physique = dizaines de clients par jour. Visite virtuelle = nombre infini de visiteurs 24/7
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 hover:border-primary/50 transition-colors">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+                  <Eye className="h-6 w-6 text-accent" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Expérience Immersive</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Permettez à vos clients de découvrir vos espaces comme s'ils y étaient, depuis n'importe où
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 hover:border-primary/50 transition-colors">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <TrendingUp className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Augmentez vos Ventes</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Les visites virtuelles augmentent la confiance et accélèrent les décisions d'achat
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="border-2 hover:border-primary/50 transition-colors">
+              <CardContent className="pt-6">
+                <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+                  <Zap className="h-6 w-6 text-accent" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Démarquez-vous</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  Modernisez votre image et surpassez vos concurrents avec une technologie innovante
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Sectors Preview */}
+      
       {/* CTA Section */}
       <section className="py-16 lg:py-24 bg-gradient-to-br from-primary to-accent">
         <div className="container mx-auto px-4 lg:px-8">
