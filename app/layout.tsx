@@ -26,6 +26,8 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
+
+        
         <FacebookPixelScript />
       </head>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}>
