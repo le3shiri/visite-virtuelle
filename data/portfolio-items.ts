@@ -21,7 +21,7 @@ export const portfolioItems = [
   {
     id: "2",
     title: "Visite Virtuelle Matterport",
-    category: "industry",
+    category: "Immobilier",
     location: "",
     image: "/placeholder.svg?key=matterport1",
     description:
@@ -34,8 +34,8 @@ export const portfolioItems = [
       "Mesures précises",
       "Mode plan 3D",
     ],
-    embedCode: '<iframe width="100%" height="600px" src="https://my.matterport.com/show?play=1&lang=en-US&m=UKMFGYYgU3T" frameborder="0" allowfullscreen allow="autoplay; fullscreen; web-share; xr-spatial-tracking;" style="height: 600px; min-height: 600px;"></iframe>',
-    virtualTourUrl: "https://my.matterport.com/show?play=1&lang=en-US&m=UKMFGYYgU3T",
+    embedCode: '<iframe width="100%" height="600px" src="https://my.matterport.com/show?play=1&lang=en-US&m=8U93Jm8DLSh" frameborder="0" allowfullscreen allow="autoplay; fullscreen; web-share; xr-spatial-tracking;" style="height: 600px; min-height: 600px;"></iframe>',
+    virtualTourUrl: "https://my.matterport.com/show?play=1&lang=en-US&m=8U93Jm8DLSh",
   },
   {
     id: "3",

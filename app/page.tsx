@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
 import { Eye, Users, TrendingUp, Zap, Building2, Hotel, ShoppingBag, GraduationCap } from "lucide-react"
-import { PortfolioSlider } from "@/components/portfolio-slider"
 import { portfolioItems } from "@/data/portfolio-items"
 import { PricingCards } from "@/components/pricing-cards"
 import { pricingPlans } from "@/data/pricing-plans"
@@ -118,7 +117,36 @@ export default function HomePage() {
             </p>
           </div>
 
-          <PortfolioSlider items={portfolioItems} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {portfolioItems.map((item) => (
+              <Card key={item.id} className="border-2 hover:border-primary transition-all hover:shadow-lg overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="relative aspect-[4/3] bg-muted">
+                    <iframe
+                      src={item.virtualTourUrl}
+                      className="w-full h-full"
+                      frameBorder="0"
+                      allowFullScreen
+                      allow="autoplay; fullscreen; web-share; xr-spatial-tracking"
+                    />
+                  </div>
+                  <div className="p-4">
+                    <div className="inline-block px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-2">
+                      {item.category}
+                    </div>
+                    <h3 className="text-lg font-bold mb-2">{item.title}</h3>
+                    <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{item.description}</p>
+                    <Button asChild className="w-full" size="sm">
+                      <Link href={item.virtualTourUrl} target="_blank" rel="noopener noreferrer">
+                        <Eye className="mr-2 h-3.5 w-3.5" />
+                        Voir la visite
+                      </Link>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
 
           <div className="text-center mt-6">
             <Button asChild size="default" variant="outline">
