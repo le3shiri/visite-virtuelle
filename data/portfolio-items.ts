@@ -75,4 +75,23 @@ export const portfolioItems = [
     embedCode: '<iframe width="100%" height="600px" src="https://my.matterport.com/show/?m=SpXMsYpuZxa" frameborder="0" allowfullscreen allow="autoplay; fullscreen; web-share; xr-spatial-tracking;" style="height: 600px; min-height: 600px;"></iframe>',
     virtualTourUrl: "https://my.matterport.com/show/?m=SpXMsYpuZxa",
   },
+  {
+    id: "4",
+    title: "Visite Virtuelle Matterport",
+    category: "Exposition",
+    location: "",
+    image: "/placeholder.svg?key=matterport1",
+    description:
+      "Découvrez cette visite virtuelle immersive créée avec la technologie Matterport. Explorez chaque détail en 3D.",
+    features: [
+      "Visite 3D immersive",
+      "Navigation intuitive",
+      "Haute définition",
+      "Compatible VR",
+      "Mesures précises",
+      "Mode plan 3D",
+    ],
+    embedCode: '<iframe width="100%" height="600px" src="https://my.matterport.com/show/?m=jMsvTxnegur" frameborder="0" allowfullscreen allow="autoplay; fullscreen; web-share; xr-spatial-tracking;" style="height: 600px; min-height: 600px;"></iframe>',
+    virtualTourUrl: "https://my.matterport.com/show/?m=jMsvTxnegur",
+  },
 ]
