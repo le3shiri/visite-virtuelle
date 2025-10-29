@@ -59,7 +59,7 @@ export const portfolioItems = [
   {
     id: "4",
     title: "Visite Virtuelle Matterport",
-    category: "Showroom",
+    category: "Exposition",
     location: "",
     image: "/placeholder.svg?key=matterport1",
     description:
