@@ -28,10 +28,10 @@ Root layout updated to include Facebook Pixel components.
 Create or update your `.env.local` file:
 
 ```bash
-NEXT_PUBLIC_FACEBOOK_PIXEL_ID=123456789012345
+NEXT_PUBLIC_FACEBOOK_PIXEL_ID=1848322352445114
 ```
 
-**Replace `123456789012345` with your actual Facebook Pixel ID.**
+**This is your actual Facebook Pixel ID from Meta Business Manager.**
 
 ### Step 2: Add to .gitignore (if not already there)
 
@@ -231,7 +231,7 @@ Install the [Facebook Pixel Helper Chrome Extension](https://chrome.google.com/w
 
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| `NEXT_PUBLIC_FACEBOOK_PIXEL_ID` | Yes | `123456789012345` | Your Facebook Pixel ID |
+| `NEXT_PUBLIC_FACEBOOK_PIXEL_ID` | Yes | `1848322352445114` | Your Facebook Pixel ID |
 
 ---
 

@@ -1,9 +1,9 @@
-Your Facebook Pixel ID: 1379895966809439
+Your Facebook Pixel ID: 1848322352445114
 
 To use this in your project:
 
 1. Create or update .env.local file with:
-   NEXT_PUBLIC_FACEBOOK_PIXEL_ID=1379895966809439
+   NEXT_PUBLIC_FACEBOOK_PIXEL_ID=1848322352445114
 
 2. The pixel is already configured as a fallback in lib/fbpixel.js
 
