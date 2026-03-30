@@ -59,7 +59,7 @@ export const portfolioItems = [
   {
     id: "3",
     title: "Visite Virtuelle Matterport",
-    category: "Exposition",
+    category: "Showroom",
     location: "",
     image: "/placeholder.svg?key=matterport1",
     description:
@@ -72,45 +72,8 @@ export const portfolioItems = [
       "Mesures précises",
       "Mode plan 3D",
     ],
-    embedCode: '<iframe width="100%" height="600px" src="https://my.matterport.com/show/?m=SpXMsYpuZxa" frameborder="0" allowfullscreen allow="autoplay; fullscreen; web-share; xr-spatial-tracking;" style="height: 600px; min-height: 600px;"></iframe>',
-    virtualTourUrl: "https://my.matterport.com/show/?m=SpXMsYpuZxa",
+    embedCode: '<iframe width="100%" height="600px" src="https://my.matterport.com/show?play=1&lang=fr&m=EdUmTau3P17" frameborder="0" allowfullscreen allow="autoplay; fullscreen; web-share; xr-spatial-tracking;" style="height: 600px; min-height: 600px;"></iframe>',
+    virtualTourUrl: "https://my.matterport.com/show?play=1&lang=fr&m=EdUmTau3P17",
   },
-  {
-    id: "4",
-    title: "Visite Virtuelle Matterport",
-    category: "Centre",
-    location: "",
-    image: "/placeholder.svg?key=matterport1",
-    description:
-      "Découvrez cette visite virtuelle immersive créée avec la technologie Matterport. Explorez chaque détail en 3D.",
-    features: [
-      "Visite 3D immersive",
-      "Navigation intuitive",
-      "Haute définition",
-      "Compatible VR",
-      "Mesures précises",
-      "Mode plan 3D",
-    ],
-    embedCode: '<iframe width="100%" height="600px" src="https://my.matterport.com/show/?m=jMsvTxnegur" frameborder="0" allowfullscreen allow="autoplay; fullscreen; web-share; xr-spatial-tracking;" style="height: 600px; min-height: 600px;"></iframe>',
-    virtualTourUrl: "https://my.matterport.com/show/?m=jMsvTxnegur",
-  },
-  {
-    id: "5",
-    title: "Visite Virtuelle Matterport",
-    category: "Centre",
-    location: "",
-    image: "/placeholder.svg?key=matterport1",
-    description:
-      "Découvrez cette visite virtuelle immersive créée avec la technologie Matterport. Explorez chaque détail en 3D.",
-    features: [
-      "Visite 3D immersive",
-      "Navigation intuitive",
-      "Haute définition",
-      "Compatible VR",
-      "Mesures précises",
-      "Mode plan 3D",
-    ],
-    embedCode: '<iframe width="100%" height="600px" src="https://my.matterport.com/show/?m=voFYje1AcD3" frameborder="0" allowfullscreen allow="autoplay; fullscreen; web-share; xr-spatial-tracking;" style="height: 600px; min-height: 600px;"></iframe>',
-    virtualTourUrl: "https://my.matterport.com/show/?m=voFYje1AcD3",
-  },
+  
 ]
