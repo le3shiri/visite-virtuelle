@@ -8,7 +8,7 @@ export const pricingPlans = [
       { name: "Visite virtuelle 360° simple", included: true },
       { name: "Jusqu'à 10 points de vue", included: true },
       { name: "Photos HD (10 photos)", included: true },
-      { name: "Hébergement 1 an", included: true },
+
       { name: "Lien de partage", included: true },
       { name: "Intégration site web", included: false },
       { name: "Photos HDR professionnelles", included: false },
@@ -22,17 +22,17 @@ export const pricingPlans = [
   {
     name: "Pack Professionnel",
     description: "Le choix idéal pour la plupart des entreprises",
-    price: "À partir de 5 500 DH",
+    price: "À partir de 6 000 DH",
     surface: "Jusqu'à 85m²",
     features: [
       { name: "Visite virtuelle 360° avancée", included: true },
       { name: "Jusqu'à 30 points de vue", included: true },
       { name: "Photos HDR professionnelles (30 photos)", included: true },
-      { name: "Hébergement 2 ans", included: true },
+
       { name: "Intégration site web complète", included: true },
       { name: "Code embed personnalisé", included: true },
       { name: "Plan interactif 2D", included: true },
-      { name: "Logo et branding", included: true },
+
       { name: "Points d'information (2 max)", included: true },
       { name: "Support prioritaire", included: true },
     ],
@@ -48,7 +48,7 @@ export const pricingPlans = [
       { name: "Visite virtuelle 360° premium", included: true },
       { name: "Points de vue illimités", included: true },
       { name: "Photos HDR professionnelles illimitées", included: true },
-      { name: "Hébergement illimité", included: true },
+
       { name: "Scénarisation personnalisée", included: true },
       { name: "Voix off professionnelle", included: true },
       { name: "Storytelling sur mesure", included: true },

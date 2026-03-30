@@ -90,9 +90,8 @@ export default function TarifsPage() {
             {pricingPlans.map((plan) => (
               <Card
                 key={plan.name}
-                className={`relative ${
-                  plan.popular ? "border-primary border-2 shadow-xl scale-105 lg:scale-110" : "border-2"
-                }`}
+                className={`relative ${plan.popular ? "border-primary border-2 shadow-xl scale-105 lg:scale-110" : "border-2"
+                  }`}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
@@ -181,12 +180,7 @@ export default function TarifsPage() {
                   <td className="text-center p-4 text-sm bg-primary/5">30 HDR</td>
                   <td className="text-center p-4 text-sm">Illimité HDR</td>
                 </tr>
-                <tr className="border-b border-border">
-                  <td className="p-4 text-sm">Hébergement</td>
-                  <td className="text-center p-4 text-sm">1 an</td>
-                  <td className="text-center p-4 text-sm bg-primary/5">2 ans</td>
-                  <td className="text-center p-4 text-sm">Illimité</td>
-                </tr>
+
                 <tr className="border-b border-border">
                   <td className="p-4 text-sm">Intégration web</td>
                   <td className="text-center p-4">

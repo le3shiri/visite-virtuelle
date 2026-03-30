@@ -29,7 +29,7 @@ export async function POST(request: Request) {
     const isCustomPack = selectedPack === "sur-mesure"
     const packNames = {
       decouverte: "Pack Découverte (2 500 DH)",
-      professionnel: "Pack Professionnel (5 500 DH)",
+      professionnel: "Pack Professionnel (6 000 DH)",
       "sur-mesure": "Pack Sur Mesure (Sur devis)",
     }
 

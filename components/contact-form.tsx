@@ -19,12 +19,12 @@ const packs = [
     price: "3 500 DH",
     surface: "Jusqu'à 35m²",
     description: "Idéal pour les petits commerces",
-    features: ["Visite 360° simple", "10 points de vue", "10 photos HD", "Hébergement 1 an"],
+    features: ["Visite 360° simple", "10 points de vue", "10 photos HD"],
   },
   {
     id: "professionnel" as const,
     name: "Pack Professionnel",
-    price: "5 500 DH",
+    price: "6 000 DH",
     surface: "Jusqu'à 85m²",
     description: "Le choix idéal pour la plupart des entreprises",
     features: ["Visite 360° avancée", "30 points de vue", "30 photos HDR", "Intégration web", "Support prioritaire"],
@@ -141,9 +141,8 @@ export function ContactForm() {
           {packs.map((pack) => (
             <Card
               key={pack.id}
-              className={`relative cursor-pointer transition-all hover:shadow-lg hover:scale-105 ${
-                pack.popular ? "border-primary border-2" : "border-2"
-              }`}
+              className={`relative cursor-pointer transition-all hover:shadow-lg hover:scale-105 ${pack.popular ? "border-primary border-2" : "border-2"
+                }`}
               onClick={() => handlePackSelect(pack.id)}
             >
               {pack.popular && (
