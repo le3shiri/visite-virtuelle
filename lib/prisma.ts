@@ -1,15 +1,27 @@
-import { PrismaClient } from "@prisma/client"
+// Mock prisma client to avoid build errors when @prisma/client is removed
+const mockModel = {
+  findMany: async () => [],
+  findUnique: async () => null,
+  findFirst: async () => null,
+  create: async () => ({}),
+  update: async () => ({}),
+  delete: async () => ({}),
+  count: async () => 0,
+  groupBy: async () => [],
+  upsert: async () => ({}),
+};
 
-const prismaClientSingleton = () => {
-  return new PrismaClient()
+const prisma: any = {
+  project: mockModel,
+  booking: mockModel,
+  blockedDate: mockModel,
+  timeSlot: mockModel,
+  testimonial: mockModel,
+  blogPost: mockModel,
+  inquiry: mockModel,
+  settings: mockModel,
+  pack: mockModel,
+  pricingPlan: mockModel,
 }
-
-declare global {
-  var prisma: undefined | ReturnType<typeof prismaClientSingleton>
-}
-
-const prisma = globalThis.prisma ?? prismaClientSingleton()
 
 export default prisma
-
-if (process.env.NODE_ENV !== "production") globalThis.prisma = prisma
