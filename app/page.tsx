@@ -161,10 +161,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-8 lg:mb-12">
             <h2 className="text-2xl lg:text-4xl font-bold mb-3 text-balance">
-              Des <span className="text-primary">tarifs transparents</span> pour tous
+              Nos <span className="text-primary">offres</span> sur mesure
             </h2>
             <p className="text-base text-muted-foreground max-w-2xl mx-auto text-pretty">
-              Choisissez le pack qui correspond à vos besoins et votre budget
+              Choisissez le pack qui correspond à vos besoins
             </p>
           </div>
 
@@ -341,7 +341,7 @@ export default function HomePage() {
                 variant="outline"
                 className="text-lg px-8 py-6 bg-transparent text-primary-foreground border-primary-foreground hover:bg-primary-foreground/10"
               >
-                <Link href="/tarifs">Voir nos Tarifs</Link>
+                <Link href="/tarifs">Voir nos Offres</Link>
               </Button>
             </div>
           </div>

@@ -46,9 +46,6 @@ export function PricingCards({ plans }: PricingCardsProps) {
           <CardHeader className="text-center pb-4 pt-6">
             <CardTitle className="text-xl mb-2">{plan.name}</CardTitle>
             <p className="text-xs text-muted-foreground mb-3">{plan.description}</p>
-            <div className="mb-1">
-              <span className="text-2xl lg:text-3xl font-bold">{plan.price}</span>
-            </div>
             <p className="text-xs text-muted-foreground">{plan.surface}</p>
           </CardHeader>
 

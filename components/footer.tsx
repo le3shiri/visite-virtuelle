@@ -48,7 +48,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/tarifs" className="hover:text-foreground transition-colors">
-                  Tarifs
+                  Offres
                 </Link>
               </li>
             </ul>

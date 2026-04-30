@@ -9,6 +9,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import FacebookPixelScript from "@/components/FacebookPixelScript"
 import FacebookPixel from "@/components/FacebookPixel"
+import { ConditionalShell } from "@/components/conditional-shell"
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -34,11 +35,10 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <FacebookPixel />
         </Suspense>
-        <Navigation />
-        <Suspense fallback={null}>{children}</Suspense>
-        <Footer />
+        <ConditionalShell>
+          <Suspense fallback={null}>{children}</Suspense>
+        </ConditionalShell>
         <Analytics />
-        <FloatingWhatsApp />
       </body>
     </html>
   )

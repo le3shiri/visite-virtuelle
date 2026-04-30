@@ -14,32 +14,26 @@ export const metadata = {
 const addons = [
   {
     name: "Photos HDR 360 supplémentaires",
-    price: "150 DH/photo",
     description: "Photos haute définition avec traitement HDR professionnel",
   },
   {
     name: "Vidéo de présentation",
-    price: "À partir de 2 000 DH",
     description: "Vidéo montage de 1-2 minutes de votre visite virtuelle",
   },
   {
     name: "Voix off professionnelle",
-    price: "1 500 DH",
     description: "Narration audio en français ou arabe par un professionnel",
   },
   {
     name: "Mise à jour de la visite",
-    price: "800 DH",
     description: "Actualisation de votre visite virtuelle existante",
   },
   {
     name: "Points d'information supplémentaires",
-    price: "200 DH/point",
     description: "Ajout de tags interactifs avec texte, images ou liens",
   },
   {
     name: "Intégration Google Street View",
-    price: "1 200 DH",
     description: "Publication de votre visite sur Google Maps",
   },
 ]
@@ -65,10 +59,10 @@ export default function TarifsPage() {
               Nos Tarifs
             </div>
             <h1 className="text-4xl lg:text-6xl font-bold mb-6 text-balance">
-              Des <span className="text-primary">tarifs transparents</span> pour tous les budgets
+              Nos <span className="text-primary">offres professionnelles</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 text-pretty">
-              Choisissez le pack qui correspond à vos besoins. Tous nos tarifs incluent la création, l'hébergement et le
+              Choisissez le pack qui correspond à vos besoins. Tous nos packs incluent la création, l'hébergement et le
               support technique.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -105,9 +99,6 @@ export default function TarifsPage() {
                 <CardHeader className="text-center pb-8 pt-8">
                   <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
                   <p className="text-sm text-muted-foreground mb-4">{plan.description}</p>
-                  <div className="mb-2">
-                    <span className="text-4xl font-bold">{plan.price}</span>
-                  </div>
                   <p className="text-sm text-muted-foreground">{plan.surface}</p>
                 </CardHeader>
 
@@ -232,7 +223,6 @@ export default function TarifsPage() {
               <Card key={addon.name} className="border-2 hover:border-primary/50 transition-colors">
                 <CardContent className="pt-6">
                   <h3 className="font-semibold text-lg mb-2">{addon.name}</h3>
-                  <p className="text-2xl font-bold text-primary mb-3">{addon.price}</p>
                   <p className="text-sm text-muted-foreground leading-relaxed">{addon.description}</p>
                 </CardContent>
               </Card>
@@ -273,7 +263,7 @@ export default function TarifsPage() {
               <CardContent className="pt-6">
                 <h3 className="font-semibold mb-2">Puis-je modifier ma visite virtuelle après livraison ?</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  Oui, nous proposons des mises à jour à 800 DH par session. Le Pack Sur Mesure inclut des mises à jour
+                  Oui, nous proposons des mises à jour sur demande. Le Pack Sur Mesure inclut des mises à jour
                   régulières. Les modifications mineures (textes, liens) sont gratuites pendant 30 jours.
                 </p>
               </CardContent>
