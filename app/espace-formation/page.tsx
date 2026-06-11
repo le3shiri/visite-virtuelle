@@ -247,7 +247,7 @@ export default function EspaceFormationPage() {
               variant="outline"
               className="bg-transparent border-2 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
             >
-              <a href="tel:+212612345678">Appelez-nous</a>
+              <a href="tel:+212669499987">Appelez-nous</a>
             </Button>
           </div>
         </div>

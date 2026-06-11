@@ -80,7 +80,7 @@ function ContactFormInner() {
         }
 
         // WhatsApp redirection
-        const whatsappNumber = "21269499987" // updated to actual phone number in contact info
+        const whatsappNumber = "212669499987" // updated to actual phone number in contact info
         let whatsappMessage = `Nouvelle demande de réservation :
 👤 Nom: ${data.nom}
 📧 Email: ${data.email}
