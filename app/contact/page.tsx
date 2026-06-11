@@ -41,7 +41,7 @@ export default function ContactPage() {
                 <a href="#formulaire">Remplir le formulaire</a>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <a href="https://wa.me/message/2LESIDK3LKGQK1 " target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/212669499987" target="_blank" rel="noopener noreferrer">
                   WhatsApp Direct
                 </a>
               </Button>
@@ -158,9 +158,7 @@ export default function ContactPage() {
                 <CardContent className="p-6">
                   <h3 className="font-semibold mb-2">Combien coûte une visite virtuelle ?</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Nos tarifs commencent à 3 500 DH pour le Pack Découverte (jusqu'à 60m²). Le prix varie selon la
-                    surface, le nombre de points de vue et les options choisies. Demandez un devis personnalisé pour
-                    obtenir un prix exact.
+                    Nos tarifs sont calculés de manière transparente en fonction de la superficie de votre local, de sa nature et du nombre de points d'information interactifs souhaités. Vous pouvez estimer votre tarif en temps réel directement à la première étape de notre formulaire de réservation ci-dessus.
                   </p>
                 </CardContent>
               </Card>
