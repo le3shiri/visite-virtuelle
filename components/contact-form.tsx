@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, Suspense } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
@@ -9,16 +9,24 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { CheckCircle2, ArrowRight, ArrowLeft, Sparkles, Send, CalendarIcon } from "lucide-react"
 import { Calendar } from "@/components/ui/calendar"
-import { format, addDays, startOfDay } from "date-fns"
+import { format, startOfDay } from "date-fns"
 import { fr } from "date-fns/locale"
 import { cn } from "@/lib/utils"
+import { useSearchParams } from "next/navigation"
+import * as fbq from "@/lib/fbpixel"
 
-export function ContactForm() {
+function ContactFormInner() {
   const [step, setStep] = useState<1 | 2>(1)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [date, setDate] = useState<Date>()
   const [time, setTime] = useState<string | null>(null)
+
+  const searchParams = useSearchParams()
+  const initialSurface = searchParams.get("surface")
+  const initialType = searchParams.get("typeLocal")
+  const initialPoints = searchParams.get("points")
+  const initialPrice = searchParams.get("price")
 
   const timeSlots = [
     "09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00"
@@ -38,6 +46,9 @@ export function ContactForm() {
       dateTournage: date ? format(date, "yyyy-MM-dd", { locale: fr }) : null,
       heureTournage: time,
       message: formData.get("message"),
+      surface: initialSurface,
+      points: initialPoints,
+      price: initialPrice,
     }
 
     try {
@@ -54,17 +65,42 @@ export function ContactForm() {
       if (result.success) {
         setIsSubmitted(true)
         
+        // Facebook Pixel Event Tracking
+        if (initialPrice) {
+          fbq.trackQuoteRequest(initialType || "Simulation Personnalisée", Number(initialPrice))
+          fbq.trackLead({
+            content_name: `Réservation - ${initialType || "Simulation"}`,
+            value: Number(initialPrice),
+            currency: "MAD"
+          })
+        } else {
+          fbq.trackContact({
+            content_name: "Formulaire Contact Direct"
+          })
+        }
+
         // WhatsApp redirection
-        const whatsappNumber = "212651344038"
-        const whatsappMessage = `Nouvelle demande de réservation :
+        const whatsappNumber = "21269499987" // updated to actual phone number in contact info
+        let whatsappMessage = `Nouvelle demande de réservation :
 👤 Nom: ${data.nom}
 📧 Email: ${data.email}
 📞 Tél: ${data.telephone}
 🏢 Entreprise: ${data.entreprise}
 🏠 Type de local: ${data.typeLocal}
 📅 Date: ${data.dateTournage}
-⏰ Heure: ${data.heureTournage}
-💬 Message: ${data.message || 'Aucun'}`
+⏰ Heure: ${data.heureTournage}`
+
+        if (initialSurface) {
+          whatsappMessage += `\n📐 Superficie: ${initialSurface} m²`
+        }
+        if (initialPoints) {
+          whatsappMessage += `\nℹ️ Points d'info: ${initialPoints}`
+        }
+        if (initialPrice) {
+          whatsappMessage += `\n💰 Tarif estimé: ${Number(initialPrice).toLocaleString("fr-FR")} DH`
+        }
+        
+        whatsappMessage += `\n💬 Message: ${data.message || 'Aucun'}`
         
         const encodedMessage = encodeURIComponent(whatsappMessage)
         window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank')
@@ -124,6 +160,22 @@ export function ContactForm() {
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* STEP 1: Personal Information */}
         <div className={cn("space-y-8", step !== 1 && "hidden")}>
+          
+          {/* Simulated price import card */}
+          {initialPrice && (
+            <div className="p-5 bg-primary/5 rounded-2xl border border-primary/10 flex items-start gap-4 text-sm animate-in fade-in slide-in-from-top-4 duration-500">
+              <Sparkles className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="font-bold text-slate-900">Simulation de tarif importée :</p>
+                <p className="text-slate-600">
+                  Superficie : <span className="font-semibold">{initialSurface} m²</span> ({initialType}) 
+                  {initialPoints && <> avec <span className="font-semibold text-primary">{initialPoints} points interactifs</span></>}.
+                </p>
+                <p className="text-primary font-bold mt-1 text-base">Estimation : {Number(initialPrice).toLocaleString("fr-FR")} DH</p>
+              </div>
+            </div>
+          )}
+
           <Card className="border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.03)] overflow-hidden">
             <CardContent className="p-8 lg:p-12 space-y-12">
               <div>
@@ -161,6 +213,7 @@ export function ContactForm() {
                   <select 
                     id="typeLocal" 
                     name="typeLocal" 
+                    defaultValue={initialType || ""}
                     className="flex h-12 w-full rounded-md border border-slate-200 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 focus:border-primary transition-colors"
                     required
                   >
@@ -325,4 +378,13 @@ export function ContactForm() {
     </div>
   )
 }
+
+export function ContactForm() {
+  return (
+    <Suspense fallback={<div className="h-64 flex items-center justify-center animate-pulse text-muted-foreground">Chargement du formulaire...</div>}>
+      <ContactFormInner />
+    </Suspense>
+  )
+}
+
 

@@ -3,8 +3,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
 import { Eye, Users, TrendingUp, Zap, Building2, Hotel, ShoppingBag, GraduationCap } from "lucide-react"
 import { portfolioItems } from "@/data/portfolio-items"
-import { PricingCards } from "@/components/pricing-cards"
-import { pricingPlans } from "@/data/pricing-plans"
+import { PriceCalculator } from "@/components/price-calculator"
 
 export default function HomePage() {
   return (
@@ -161,20 +160,14 @@ export default function HomePage() {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="text-center mb-8 lg:mb-12">
             <h2 className="text-2xl lg:text-4xl font-bold mb-3 text-balance">
-              Nos <span className="text-primary">offres</span> sur mesure
+              Estimez votre tarif <span className="text-primary">sur mesure</span>
             </h2>
             <p className="text-base text-muted-foreground max-w-2xl mx-auto text-pretty">
-              Choisissez le pack qui correspond à vos besoins
+              Ajustez la superficie de votre local et configurez vos options pour obtenir une estimation immédiate.
             </p>
           </div>
 
-          <PricingCards plans={pricingPlans} />
-
-          <div className="text-center mt-6">
-            <Button asChild size="default" variant="outline">
-              <Link href="/tarifs">Voir tous les détails →</Link>
-            </Button>
-          </div>
+          <PriceCalculator />
         </div>
       </section>
 

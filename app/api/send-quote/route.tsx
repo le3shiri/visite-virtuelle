@@ -18,6 +18,9 @@ export async function POST(request: Request) {
       dateTournage,
       heureTournage,
       message,
+      surface,
+      points,
+      price,
     } = data
 
     let emailContent = `
@@ -34,6 +37,17 @@ export async function POST(request: Request) {
         <li><strong>Heure :</strong> ${heureTournage || 'Non spécifiée'}</li>
       </ul>
     `
+
+    if (surface || points || price) {
+      emailContent += `
+        <h3>Détails du calculateur de tarif</h3>
+        <ul>
+          ${surface ? `<li><strong>Superficie :</strong> ${surface} m²</li>` : ""}
+          ${points ? `<li><strong>Points d'information :</strong> ${points}</li>` : ""}
+          ${price ? `<li><strong>Tarif estimé :</strong> ${Number(price).toLocaleString("fr-FR")} DH</li>` : ""}
+        </ul>
+      `
+    }
 
     if (message) {
       emailContent += `
