@@ -22,14 +22,34 @@ import {
   HelpCircle
 } from "lucide-react"
 
-// Types of properties, labels, icons, and multipliers
+// ─────────────────────────────────────────────────────────────────────────────
+// NEW FORMULA (from formule prix visite virtuelle.md)
+// Prix total = Forfait de base (by type) + Prix surface (bracketed) + Prix info points
+//
+// Forfait de base:
+//   • Appartement / petit local  → 1 500 DH
+//   • Villa / Showroom / Bureau  → 2 000 DH
+//   • Grand espace / Industriel  → 3 000 DH
+//
+// Prix surface (cumulative brackets):
+//   •   0 – 100 m² : 35 DH/m²
+//   • 101 – 250 m² : 28 DH/m²
+//   • 251 – 500 m² : 22 DH/m²
+//   • 500+     m² : 18 DH/m²
+//
+// Prix points d'information : 120 DH / point
+// ─────────────────────────────────────────────────────────────────────────────
+
+type PropertyTier = "small" | "medium" | "large"
+
 const propertyTypes = [
   {
     id: "Immobilier",
     label: "Immobilier",
-    sublabel: "Appartements, Villas",
+    sublabel: "Appartements, Studios",
     icon: Building2,
-    multiplier: 1.0,
+    tier: "small" as PropertyTier,
+    forfait: 1500,
     color: "from-blue-500/20 to-cyan-500/20 text-blue-600 dark:text-blue-400"
   },
   {
@@ -37,7 +57,8 @@ const propertyTypes = [
     label: "Commerce",
     sublabel: "Boutiques, Showrooms",
     icon: ShoppingBag,
-    multiplier: 1.2,
+    tier: "medium" as PropertyTier,
+    forfait: 2000,
     color: "from-emerald-500/20 to-teal-500/20 text-emerald-600 dark:text-emerald-400"
   },
   {
@@ -45,7 +66,8 @@ const propertyTypes = [
     label: "Hôtellerie",
     sublabel: "Hôtels, Riads, Restos",
     icon: Hotel,
-    multiplier: 1.3,
+    tier: "medium" as PropertyTier,
+    forfait: 2000,
     color: "from-amber-500/20 to-orange-500/20 text-amber-600 dark:text-amber-400"
   },
   {
@@ -53,7 +75,8 @@ const propertyTypes = [
     label: "Éducation & Santé",
     sublabel: "Campus, Écoles, Cliniques",
     icon: GraduationCap,
-    multiplier: 1.1,
+    tier: "medium" as PropertyTier,
+    forfait: 2000,
     color: "from-indigo-500/20 to-purple-500/20 text-indigo-600 dark:text-indigo-400"
   },
   {
@@ -61,10 +84,32 @@ const propertyTypes = [
     label: "Industrie",
     sublabel: "Bureaux, Usines, Dépôts",
     icon: Factory,
-    multiplier: 1.4,
+    tier: "large" as PropertyTier,
+    forfait: 3000,
     color: "from-rose-500/20 to-pink-500/20 text-rose-600 dark:text-rose-400"
   }
 ]
+
+// Cumulative bracketed area cost
+// ≤100 m²      → 35 DH/m²
+// 101–250 m²   → 28 DH/m²
+// 251–500 m²   → 22 DH/m²
+// >500 m²      → 18 DH/m²
+const getAreaCost = (s: number): number => {
+  if (s <= 100) return s * 35
+  if (s <= 250) return 100 * 35 + (s - 100) * 28
+  if (s <= 500) return 100 * 35 + 150 * 28 + (s - 250) * 22
+  return 100 * 35 + 150 * 28 + 250 * 22 + (s - 500) * 18
+}
+
+// Tier label for display
+const tierLabel: Record<PropertyTier, string> = {
+  small: "Petit local",
+  medium: "Moyen / Professionnel",
+  large: "Grand espace / Industriel"
+}
+
+const infoPointRate = 120 // DH per info point
 
 export function PriceCalculator() {
   const [propertyType, setPropertyType] = useState("Immobilier")
@@ -73,28 +118,17 @@ export function PriceCalculator() {
   const [totalPrice, setTotalPrice] = useState(0)
   const [avgPricePerM2, setAvgPricePerM2] = useState(0)
 
-  // Calculations details for invoice details
-  const baseSetupFee = 1500
-  const infoPointRate = 100
-
-  // Calculate bracketed area cost (Minus 2 DH on each tranche: 48, 38, 28, 18)
-  const getAreaCost = (s: number) => {
-    if (s <= 50) return s * 48
-    if (s <= 100) return 2400 + (s - 50) * 38
-    if (s <= 250) return 4300 + (s - 100) * 28
-    return 8500 + (s - 250) * 18
-  }
-
   const activeProperty = propertyTypes.find(t => t.id === propertyType) || propertyTypes[0]
+  const forfait = activeProperty.forfait
   const areaCost = getAreaCost(surface)
   const infoPointsCost = infoPoints * infoPointRate
 
   useEffect(() => {
-    // Total calculation: (Base setup + Area cost) * multiplier + info points cost
-    const calculatedTotal = Math.round((baseSetupFee + areaCost) * activeProperty.multiplier + infoPointsCost)
+    // Prix total = Forfait de base + Prix surface + Prix points d'information
+    const calculatedTotal = Math.round(forfait + areaCost + infoPointsCost)
     setTotalPrice(calculatedTotal)
     setAvgPricePerM2(Math.round(calculatedTotal / surface))
-  }, [surface, propertyType, infoPoints, areaCost, activeProperty.multiplier, infoPointsCost])
+  }, [surface, propertyType, infoPoints, forfait, areaCost, infoPointsCost])
 
   const handleInfoPointsChange = (amount: number) => {
     setInfoPoints(prev => Math.max(0, prev + amount))
@@ -135,6 +169,12 @@ export function PriceCalculator() {
                       <p className="text-xs font-bold leading-tight">{type.label}</p>
                       <p className="text-[9px] text-muted-foreground leading-none">{type.sublabel}</p>
                     </div>
+                    {/* Show forfait badge on selected */}
+                    {isSelected && (
+                      <span className="mt-2 text-[9px] font-bold text-primary bg-primary/10 px-1.5 py-0.5 rounded-full">
+                        Forfait {type.forfait.toLocaleString("fr-FR")} DH
+                      </span>
+                    )}
                   </button>
                 )
               })}
@@ -178,8 +218,29 @@ export function PriceCalculator() {
                 <span>1 000 m² +</span>
               </div>
             </div>
-            
-            {/* Economy of Scale indicator */}
+
+            {/* Pricing bracket indicator */}
+            <div className="grid grid-cols-4 gap-1.5 text-center text-[9px]">
+              {[
+                { range: "≤ 100 m²", rate: "35 DH/m²", active: surface <= 100 },
+                { range: "101–250 m²", rate: "28 DH/m²", active: surface > 100 && surface <= 250 },
+                { range: "251–500 m²", rate: "22 DH/m²", active: surface > 250 && surface <= 500 },
+                { range: "> 500 m²", rate: "18 DH/m²", active: surface > 500 },
+              ].map((bracket) => (
+                <div
+                  key={bracket.range}
+                  className={`rounded-lg p-2 border transition-all ${
+                    bracket.active
+                      ? "bg-primary/10 border-primary/30 text-primary font-bold"
+                      : "bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-muted-foreground"
+                  }`}
+                >
+                  <p className="font-semibold">{bracket.range}</p>
+                  <p className={bracket.active ? "text-primary" : ""}>{bracket.rate}</p>
+                </div>
+              ))}
+            </div>
+
             <div className="p-3 bg-primary/5 rounded-xl border border-primary/10 flex items-start gap-2.5">
               <Info className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
               <div className="text-xs">
@@ -222,7 +283,7 @@ export function PriceCalculator() {
             </div>
             
             <p className="text-xs text-muted-foreground">
-              Tags cliquables intégrés à la visite 360° pour afficher du contenu (texte, images, liens externes, vidéos, fiches produits).
+              Tags cliquables intégrés à la visite 360° pour afficher du contenu (texte, images, liens externes, vidéos, fiches produits). <span className="font-semibold text-foreground">120 DH / point.</span>
             </p>
           </div>
         </div>
@@ -241,16 +302,23 @@ export function PriceCalculator() {
             </div>
 
             <div className="space-y-4 text-sm border-t border-slate-800 pt-6">
-              {/* Setup Fixed Fee */}
+
+              {/* Base Forfait by type */}
               <div className="flex justify-between items-center">
                 <span className="text-slate-400 flex items-center gap-1.5">
-                  Frais de configuration
-                  <HelpCircle className="h-3.5 w-3.5 opacity-50" title="Montage, étalonnage de base et gestion du projet" />
+                  Forfait de base
+                  <HelpCircle className="h-3.5 w-3.5 opacity-50" title={tierLabel[activeProperty.tier]} />
                 </span>
-                <span className="font-bold">{baseSetupFee.toLocaleString("fr-FR")} DH</span>
+                <span className="font-bold">{forfait.toLocaleString("fr-FR")} DH</span>
               </div>
 
-              {/* Surface Cost (Calculated dynamic) */}
+              {/* Tier label */}
+              <div className="flex justify-between items-center text-xs">
+                <span className="text-slate-500 italic">{activeProperty.label}</span>
+                <span className="text-slate-400 italic">{tierLabel[activeProperty.tier]}</span>
+              </div>
+
+              {/* Surface Cost */}
               <div className="flex justify-between items-start">
                 <span className="text-slate-400">
                   Coût superficie ({surface} m²)
@@ -259,23 +327,28 @@ export function PriceCalculator() {
                 <span className="font-bold">{areaCost.toLocaleString("fr-FR")} DH</span>
               </div>
 
-              {/* Multiplier applied */}
-              {activeProperty.multiplier !== 1.0 && (
-                <div className="flex justify-between items-center text-primary-foreground/90">
-                  <span className="text-slate-400 flex items-center gap-1">
-                    Complexité ({activeProperty.label})
-                  </span>
-                  <span className="font-bold bg-primary/20 text-primary border border-primary/20 px-2 py-0.5 rounded text-xs">
-                    x {activeProperty.multiplier}
-                  </span>
-                </div>
-              )}
+              {/* Active bracket display */}
+              <div className="text-[10px] text-slate-500 bg-white/5 rounded-lg px-3 py-2 border border-white/10 space-y-1">
+                <p className="font-semibold text-slate-400 mb-1">Barème appliqué :</p>
+                {surface > 0 && (
+                  <p>≤ 100 m² → {Math.min(surface, 100)} m² × 35 DH = {(Math.min(surface, 100) * 35).toLocaleString("fr-FR")} DH</p>
+                )}
+                {surface > 100 && (
+                  <p>101–250 m² → {Math.min(surface - 100, 150)} m² × 28 DH = {(Math.min(surface - 100, 150) * 28).toLocaleString("fr-FR")} DH</p>
+                )}
+                {surface > 250 && (
+                  <p>251–500 m² → {Math.min(surface - 250, 250)} m² × 22 DH = {(Math.min(surface - 250, 250) * 22).toLocaleString("fr-FR")} DH</p>
+                )}
+                {surface > 500 && (
+                  <p>&gt; 500 m² → {surface - 500} m² × 18 DH = {((surface - 500) * 18).toLocaleString("fr-FR")} DH</p>
+                )}
+              </div>
 
-              {/* Hotspots Cost */}
+              {/* Info Points Cost */}
               {infoPointsCost > 0 && (
                 <div className="flex justify-between items-center">
                   <span className="text-slate-400">
-                    Points d'information ({infoPoints})
+                    Points d'information ({infoPoints} × 120 DH)
                   </span>
                   <span className="font-bold">{infoPointsCost.toLocaleString("fr-FR")} DH</span>
                 </div>
