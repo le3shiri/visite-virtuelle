@@ -23,7 +23,7 @@ import {
 } from "lucide-react"
 
 // ─────────────────────────────────────────────────────────────────────────────
-// FORMULA (from formule prix visite virtuelle.md) — grand surface adjustment
+// FORMULA (from formule prix visite virtuelle.md) — market-adjusted rates
 // Prix total = Forfait de base (by type) + Prix surface (bracketed) + Prix info points
 //
 // Forfait de base:
@@ -31,12 +31,12 @@ import {
 //   • Villa / Showroom / Bureau  → 2 000 DH
 //   • Grand espace / Industriel  → 3 000 DH
 //
-// Prix surface (cumulative brackets):
-//   •    0 – 100 m² : 35 DH/m²
-//   •  101 – 250 m² : 28 DH/m²
-//   •  251 – 500 m² : 22 DH/m²
-//   •  501 – 1000 m²: 15 DH/m²  ← adjusted (was flat 18 for all >500)
-//   • 1001+      m² : 10 DH/m²  ← new bracket
+// Prix surface (cumulative brackets — market-adjusted):
+//   •    0 – 100 m² : 25 DH/m²
+//   •  101 – 250 m² : 18 DH/m²
+//   •  251 – 500 m² : 12 DH/m²
+//   •  501 – 1000 m²:  8 DH/m²
+//   • 1001+      m² :  4 DH/m²
 //
 // Prix points d'information : 120 DH / point
 // ─────────────────────────────────────────────────────────────────────────────
@@ -91,21 +91,21 @@ const propertyTypes = [
   }
 ]
 
-// Cumulative bracketed area cost
-// ≤100 m²       → 35 DH/m²
-// 101–250 m²    → 28 DH/m²
-// 251–500 m²    → 22 DH/m²
-// 501–1000 m²   → 15 DH/m²  (adjusted – was flat 18 for all >500)
-// >1000 m²      → 10 DH/m²  (new – prevents runaway cost for grand surfaces)
-const BASE_500 = 100 * 35 + 150 * 28 + 250 * 22 // 13 200 DH at 500 m²
-const BASE_1000 = BASE_500 + 500 * 15            // 20 700 DH at 1 000 m²
+// Cumulative bracketed area cost (market-adjusted rates)
+// ≤100 m²       → 25 DH/m²
+// 101–250 m²    → 18 DH/m²
+// 251–500 m²    → 12 DH/m²
+// 501–1000 m²   →  8 DH/m²
+// >1000 m²      →  4 DH/m²
+const BASE_500  = 100 * 25 + 150 * 18 + 250 * 12  // 8 200 DH at 500 m²
+const BASE_1000 = BASE_500 + 500 * 8               // 12 200 DH at 1 000 m²
 
 const getAreaCost = (s: number): number => {
-  if (s <= 100)  return s * 35
-  if (s <= 250)  return 100 * 35 + (s - 100) * 28
-  if (s <= 500)  return 100 * 35 + 150 * 28 + (s - 250) * 22
-  if (s <= 1000) return BASE_500 + (s - 500) * 15
-  return BASE_1000 + (s - 1000) * 10
+  if (s <= 100)  return s * 25
+  if (s <= 250)  return 100 * 25 + (s - 100) * 18
+  if (s <= 500)  return 100 * 25 + 150 * 18 + (s - 250) * 12
+  if (s <= 1000) return BASE_500 + (s - 500) * 8
+  return BASE_1000 + (s - 1000) * 4
 }
 
 // Tier label for display
@@ -228,11 +228,11 @@ export function PriceCalculator() {
             {/* Pricing bracket indicator */}
             <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5 text-center text-[9px]">
               {[
-                { range: "≤ 100 m²",    rate: "35 DH/m²", active: surface <= 100 },
-                { range: "101–250 m²",   rate: "28 DH/m²", active: surface > 100  && surface <= 250 },
-                { range: "251–500 m²",   rate: "22 DH/m²", active: surface > 250  && surface <= 500 },
-                { range: "501–1000 m²",  rate: "15 DH/m²", active: surface > 500  && surface <= 1000 },
-                { range: "> 1 000 m²",   rate: "10 DH/m²", active: surface > 1000 },
+                { range: "≤ 100 m²",    rate: "25 DH/m²", active: surface <= 100 },
+                { range: "101–250 m²",   rate: "18 DH/m²", active: surface > 100  && surface <= 250 },
+                { range: "251–500 m²",   rate: "12 DH/m²", active: surface > 250  && surface <= 500 },
+                { range: "501–1000 m²",  rate:  "8 DH/m²", active: surface > 500  && surface <= 1000 },
+                { range: "> 1 000 m²",   rate:  "4 DH/m²", active: surface > 1000 },
               ].map((bracket) => (
                 <div
                   key={bracket.range}
@@ -338,19 +338,19 @@ export function PriceCalculator() {
               <div className="text-[10px] text-slate-500 bg-white/5 rounded-lg px-3 py-2 border border-white/10 space-y-1">
                 <p className="font-semibold text-slate-400 mb-1">Barème appliqué :</p>
                 {surface > 0 && (
-                  <p>≤ 100 m² → {Math.min(surface, 100)} m² × 35 DH = {(Math.min(surface, 100) * 35).toLocaleString("fr-FR")} DH</p>
+                  <p>≤ 100 m² → {Math.min(surface, 100)} m² × 25 DH = {(Math.min(surface, 100) * 25).toLocaleString("fr-FR")} DH</p>
                 )}
                 {surface > 100 && (
-                  <p>101–250 m² → {Math.min(surface - 100, 150)} m² × 28 DH = {(Math.min(surface - 100, 150) * 28).toLocaleString("fr-FR")} DH</p>
+                  <p>101–250 m² → {Math.min(surface - 100, 150)} m² × 18 DH = {(Math.min(surface - 100, 150) * 18).toLocaleString("fr-FR")} DH</p>
                 )}
                 {surface > 250 && (
-                  <p>251–500 m² → {Math.min(surface - 250, 250)} m² × 22 DH = {(Math.min(surface - 250, 250) * 22).toLocaleString("fr-FR")} DH</p>
+                  <p>251–500 m² → {Math.min(surface - 250, 250)} m² × 12 DH = {(Math.min(surface - 250, 250) * 12).toLocaleString("fr-FR")} DH</p>
                 )}
                 {surface > 500 && (
-                  <p>501–1 000 m² → {Math.min(surface - 500, 500)} m² × 15 DH = {(Math.min(surface - 500, 500) * 15).toLocaleString("fr-FR")} DH</p>
+                  <p>501–1 000 m² → {Math.min(surface - 500, 500)} m² × 8 DH = {(Math.min(surface - 500, 500) * 8).toLocaleString("fr-FR")} DH</p>
                 )}
                 {surface > 1000 && (
-                  <p>&gt; 1 000 m² → {surface - 1000} m² × 10 DH = {((surface - 1000) * 10).toLocaleString("fr-FR")} DH</p>
+                  <p>&gt; 1 000 m² → {surface - 1000} m² × 4 DH = {((surface - 1000) * 4).toLocaleString("fr-FR")} DH</p>
                 )}
               </div>
 

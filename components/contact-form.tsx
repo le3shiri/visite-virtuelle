@@ -120,20 +120,20 @@ function ContactFormInner() {
   const [surface, setSurface] = useState(paramSurface ? Math.max(1, Number(paramSurface)) : 80)
   const [infoPoints, setInfoPoints] = useState(paramPoints ? Math.max(0, Number(paramPoints)) : 5)
 
-  // Pricing formula from formule prix visite virtuelle.md
+  // Pricing formula from formule prix visite virtuelle.md (market-adjusted rates)
   // Prix total = Forfait de base + Prix surface (cumulative brackets) + Prix points d’info
   const infoPointRate = 120  // 120 DH / point
 
-  // Cumulative area cost
-  const BASE_500  = 100 * 35 + 150 * 28 + 250 * 22  // 13 200 DH at 500 m²
-  const BASE_1000 = BASE_500 + 500 * 15               // 20 700 DH at 1 000 m²
+  // Cumulative area cost (market-adjusted)
+  const BASE_500  = 100 * 25 + 150 * 18 + 250 * 12  // 8 200 DH at 500 m²
+  const BASE_1000 = BASE_500 + 500 * 8               // 12 200 DH at 1 000 m²
 
   const getAreaCost = (s: number): number => {
-    if (s <= 100)  return s * 35
-    if (s <= 250)  return 100 * 35 + (s - 100) * 28
-    if (s <= 500)  return 100 * 35 + 150 * 28 + (s - 250) * 22
-    if (s <= 1000) return BASE_500 + (s - 500) * 15
-    return BASE_1000 + (s - 1000) * 10
+    if (s <= 100)  return s * 25
+    if (s <= 250)  return 100 * 25 + (s - 100) * 18
+    if (s <= 500)  return 100 * 25 + 150 * 18 + (s - 250) * 12
+    if (s <= 1000) return BASE_500 + (s - 500) * 8
+    return BASE_1000 + (s - 1000) * 4
   }
 
   const activeProperty = propertyTypes.find(t => t.id === propertyType) || propertyTypes[0]
