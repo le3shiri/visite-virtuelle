@@ -12,7 +12,7 @@ export function Navigation() {
   const navLinks = [
     { href: "/", label: "Accueil" },
     { href: "/secteurs", label: "Secteurs" },
-    { href: "/tarifs", label: "Offres" },
+    { href: "/tarifs", label: "Tarifs" },
     { href: "/portfolio", label: "Portfolio" },
     { href: "/espace-formation", label: "Formation" },
     { href: "/a-propos", label: "À propos" },

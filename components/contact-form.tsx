@@ -71,7 +71,7 @@ const propertyTypes = [
     label: "Hôtellerie",
     sublabel: "Hôtels, Riads, Restos",
     icon: Hotel,
-    forfait: 2000,
+    forfait: 3000,
     color: "from-amber-500/20 to-orange-500/20 text-amber-600 dark:text-amber-400"
   },
   {
@@ -125,13 +125,13 @@ function ContactFormInner() {
   const infoPointRate = 120  // 120 DH / point
 
   // Cumulative area cost (market-adjusted)
-  const BASE_500  = 100 * 25 + 150 * 18 + 250 * 12  // 8 200 DH at 500 m²
-  const BASE_1000 = BASE_500 + 500 * 8               // 12 200 DH at 1 000 m²
+  const BASE_500  = 100 * 25 + 150 * 18 + 250 * 14  // 8 700 DH at 500 m²
+  const BASE_1000 = BASE_500 + 500 * 8               // 12 700 DH at 1 000 m²
 
   const getAreaCost = (s: number): number => {
     if (s <= 100)  return s * 25
     if (s <= 250)  return 100 * 25 + (s - 100) * 18
-    if (s <= 500)  return 100 * 25 + 150 * 18 + (s - 250) * 12
+    if (s <= 500)  return 100 * 25 + 150 * 18 + (s - 250) * 14
     if (s <= 1000) return BASE_500 + (s - 500) * 8
     return BASE_1000 + (s - 1000) * 4
   }
@@ -399,9 +399,9 @@ function ContactFormInner() {
                     <Input 
                       type="number" 
                       value={surface} 
-                      onChange={(e) => setSurface(Math.max(1, Number(e.target.value)))}
-                      className="w-16 h-8 text-center font-bold text-sm bg-transparent border-none p-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground"
-                      min={1}
+                      onChange={(e) => setSurface(Math.max(0, Number(e.target.value)))}
+                      className="w-20 h-8 text-center font-bold text-sm bg-transparent border-none p-0 focus-visible:ring-0 focus-visible:ring-offset-0 text-foreground"
+                      min={0}
                     />
                     <span className="text-xs font-semibold text-muted-foreground">m²</span>
                   </div>
@@ -409,19 +409,19 @@ function ContactFormInner() {
                 <div className="space-y-2">
                   <input
                     type="range"
-                    min={10}
-                    max={1000}
-                    step={5}
-                    value={Math.min(surface, 1000)}
+                    min={0}
+                    max={10000}
+                    step={10}
+                    value={surface}
                     onChange={(e) => setSurface(Number(e.target.value))}
                     className="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-primary"
                   />
                   <div className="flex justify-between text-[10px] text-muted-foreground font-semibold px-1">
-                    <span>10 m²</span>
-                    <span>250 m²</span>
-                    <span>500 m²</span>
-                    <span>750 m²</span>
-                    <span>1 000 m² +</span>
+                    <span>0 m²</span>
+                    <span>2 500 m²</span>
+                    <span>5 000 m²</span>
+                    <span>7 500 m²</span>
+                    <span>10 000 m²</span>
                   </div>
                 </div>
                 <div className="p-3 bg-primary/5 rounded-xl border border-primary/10 flex items-start gap-2">

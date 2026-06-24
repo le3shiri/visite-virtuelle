@@ -68,7 +68,7 @@ const propertyTypes = [
     sublabel: "Hôtels, Riads, Restos",
     icon: Hotel,
     tier: "medium" as PropertyTier,
-    forfait: 2000,
+    forfait: 3000,
     color: "from-amber-500/20 to-orange-500/20 text-amber-600 dark:text-amber-400"
   },
   {
@@ -94,16 +94,16 @@ const propertyTypes = [
 // Cumulative bracketed area cost (market-adjusted rates)
 // ≤100 m²       → 25 DH/m²
 // 101–250 m²    → 18 DH/m²
-// 251–500 m²    → 12 DH/m²
+// 251–500 m²    → 14 DH/m²
 // 501–1000 m²   →  8 DH/m²
 // >1000 m²      →  4 DH/m²
-const BASE_500  = 100 * 25 + 150 * 18 + 250 * 12  // 8 200 DH at 500 m²
-const BASE_1000 = BASE_500 + 500 * 8               // 12 200 DH at 1 000 m²
+const BASE_500  = 100 * 25 + 150 * 18 + 250 * 14  // 8 700 DH at 500 m²
+const BASE_1000 = BASE_500 + 500 * 8               // 12 700 DH at 1 000 m²
 
 const getAreaCost = (s: number): number => {
   if (s <= 100)  return s * 25
   if (s <= 250)  return 100 * 25 + (s - 100) * 18
-  if (s <= 500)  return 100 * 25 + 150 * 18 + (s - 250) * 12
+  if (s <= 500)  return 100 * 25 + 150 * 18 + (s - 250) * 14
   if (s <= 1000) return BASE_500 + (s - 500) * 8
   return BASE_1000 + (s - 1000) * 4
 }
@@ -198,9 +198,9 @@ export function PriceCalculator() {
                 <Input 
                   type="number" 
                   value={surface} 
-                  onChange={(e) => setSurface(Math.max(1, Number(e.target.value)))}
-                  className="w-16 h-8 text-center font-bold text-sm bg-transparent border-none p-0 focus-visible:ring-0 focus-visible:ring-offset-0"
-                  min={1}
+                  onChange={(e) => setSurface(Math.max(0, Number(e.target.value)))}
+                  className="w-20 h-8 text-center font-bold text-sm bg-transparent border-none p-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                  min={0}
                 />
                 <span className="text-xs font-semibold text-muted-foreground">m²</span>
               </div>
@@ -209,19 +209,19 @@ export function PriceCalculator() {
             <div className="space-y-2">
               <input
                 type="range"
-                min={10}
-                max={1000}
-                step={5}
-                value={Math.min(surface, 1000)}
+                min={0}
+                max={10000}
+                step={10}
+                value={surface}
                 onChange={(e) => setSurface(Number(e.target.value))}
                 className="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-primary"
               />
               <div className="flex justify-between text-[10px] text-muted-foreground font-semibold px-1">
-                <span>10 m²</span>
-                <span>250 m²</span>
-                <span>500 m²</span>
-                <span>750 m²</span>
-                <span>1 000 m² +</span>
+                <span>0 m²</span>
+                <span>2 500 m²</span>
+                <span>5 000 m²</span>
+                <span>7 500 m²</span>
+                <span>10 000 m²</span>
               </div>
             </div>
 
@@ -230,7 +230,7 @@ export function PriceCalculator() {
               {[
                 { range: "≤ 100 m²",    rate: "25 DH/m²", active: surface <= 100 },
                 { range: "101–250 m²",   rate: "18 DH/m²", active: surface > 100  && surface <= 250 },
-                { range: "251–500 m²",   rate: "12 DH/m²", active: surface > 250  && surface <= 500 },
+                { range: "251–500 m²",   rate: "14 DH/m²", active: surface > 250  && surface <= 500 },
                 { range: "501–1000 m²",  rate:  "8 DH/m²", active: surface > 500  && surface <= 1000 },
                 { range: "> 1 000 m²",   rate:  "4 DH/m²", active: surface > 1000 },
               ].map((bracket) => (
@@ -344,7 +344,7 @@ export function PriceCalculator() {
                   <p>101–250 m² → {Math.min(surface - 100, 150)} m² × 18 DH = {(Math.min(surface - 100, 150) * 18).toLocaleString("fr-FR")} DH</p>
                 )}
                 {surface > 250 && (
-                  <p>251–500 m² → {Math.min(surface - 250, 250)} m² × 12 DH = {(Math.min(surface - 250, 250) * 12).toLocaleString("fr-FR")} DH</p>
+                  <p>251–500 m² → {Math.min(surface - 250, 250)} m² × 14 DH = {(Math.min(surface - 250, 250) * 14).toLocaleString("fr-FR")} DH</p>
                 )}
                 {surface > 500 && (
                   <p>501–1 000 m² → {Math.min(surface - 500, 500)} m² × 8 DH = {(Math.min(surface - 500, 500) * 8).toLocaleString("fr-FR")} DH</p>
