@@ -32,14 +32,30 @@ import { cn } from "@/lib/utils"
 import { useSearchParams } from "next/navigation"
 import * as fbq from "@/lib/fbpixel"
 
-// Types of properties, labels, icons, and multipliers
+// Formula (from formule prix visite virtuelle.md)
+// Prix total = Forfait de base (by type) + Prix surface (cumulative brackets) + Prix points d’info
+//
+// Forfaits:
+//   Immobilier             → 1 500 DH
+//   Commerce / Hôtellerie / Éducation → 2 000 DH
+//   Industrie              → 3 000 DH
+//
+// Brackets cumulatifs:
+//   ≤ 100 m²       : 35 DH/m²
+//   101 – 250 m²   : 28 DH/m²
+//   251 – 500 m²   : 22 DH/m²
+//   501 – 1 000 m² : 15 DH/m²
+//   > 1 000 m²     : 10 DH/m²
+//
+// Points d’information : 120 DH / point
+
 const propertyTypes = [
   {
     id: "Immobilier",
     label: "Immobilier",
     sublabel: "Appartements, Villas",
     icon: Building2,
-    multiplier: 1.0,
+    forfait: 1500,
     color: "from-blue-500/20 to-cyan-500/20 text-blue-600 dark:text-blue-400"
   },
   {
@@ -47,7 +63,7 @@ const propertyTypes = [
     label: "Commerce",
     sublabel: "Boutiques, Showrooms",
     icon: ShoppingBag,
-    multiplier: 1.2,
+    forfait: 2000,
     color: "from-emerald-500/20 to-teal-500/20 text-emerald-600 dark:text-emerald-400"
   },
   {
@@ -55,7 +71,7 @@ const propertyTypes = [
     label: "Hôtellerie",
     sublabel: "Hôtels, Riads, Restos",
     icon: Hotel,
-    multiplier: 1.3,
+    forfait: 2000,
     color: "from-amber-500/20 to-orange-500/20 text-amber-600 dark:text-amber-400"
   },
   {
@@ -63,7 +79,7 @@ const propertyTypes = [
     label: "Éducation & Santé",
     sublabel: "Campus, Écoles, Cliniques",
     icon: GraduationCap,
-    multiplier: 1.1,
+    forfait: 2000,
     color: "from-indigo-500/20 to-purple-500/20 text-indigo-600 dark:text-indigo-400"
   },
   {
@@ -71,7 +87,7 @@ const propertyTypes = [
     label: "Industrie",
     sublabel: "Bureaux, Usines, Dépôts",
     icon: Factory,
-    multiplier: 1.4,
+    forfait: 3000,
     color: "from-rose-500/20 to-pink-500/20 text-rose-600 dark:text-rose-400"
   }
 ]
@@ -104,22 +120,28 @@ function ContactFormInner() {
   const [surface, setSurface] = useState(paramSurface ? Math.max(1, Number(paramSurface)) : 80)
   const [infoPoints, setInfoPoints] = useState(paramPoints ? Math.max(0, Number(paramPoints)) : 5)
 
-  // Calculations logic (Base + sliding scale m2 rate * complexity multiplier + hotspots)
-  const baseSetupFee = 1500
-  const infoPointRate = 100
+  // Pricing formula from formule prix visite virtuelle.md
+  // Prix total = Forfait de base + Prix surface (cumulative brackets) + Prix points d’info
+  const infoPointRate = 120  // 120 DH / point
 
-  const getAreaCost = (s: number) => {
-    if (s <= 50) return s * 48
-    if (s <= 100) return 2400 + (s - 50) * 38
-    if (s <= 250) return 4300 + (s - 100) * 28
-    return 8500 + (s - 250) * 18
+  // Cumulative area cost
+  const BASE_500  = 100 * 35 + 150 * 28 + 250 * 22  // 13 200 DH at 500 m²
+  const BASE_1000 = BASE_500 + 500 * 15               // 20 700 DH at 1 000 m²
+
+  const getAreaCost = (s: number): number => {
+    if (s <= 100)  return s * 35
+    if (s <= 250)  return 100 * 35 + (s - 100) * 28
+    if (s <= 500)  return 100 * 35 + 150 * 28 + (s - 250) * 22
+    if (s <= 1000) return BASE_500 + (s - 500) * 15
+    return BASE_1000 + (s - 1000) * 10
   }
 
   const activeProperty = propertyTypes.find(t => t.id === propertyType) || propertyTypes[0]
-  const areaCost = getAreaCost(surface)
+  const forfait        = activeProperty.forfait
+  const areaCost       = getAreaCost(surface)
   const infoPointsCost = infoPoints * infoPointRate
-  const totalPrice = Math.round((baseSetupFee + areaCost) * activeProperty.multiplier + infoPointsCost)
-  const avgPricePerM2 = surface > 0 ? Math.round(totalPrice / surface) : 0
+  const totalPrice     = Math.round(forfait + areaCost + infoPointsCost)
+  const avgPricePerM2  = surface > 0 ? Math.round(totalPrice / surface) : 0
 
   const timeSlots = [
     "09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00"
@@ -461,13 +483,16 @@ function ContactFormInner() {
                 </div>
 
                 <div className="space-y-3.5 text-xs border-t border-slate-800 pt-5">
-                  {/* Setup Fixed Fee */}
+                  {/* Base Forfait by type */}
                   <div className="flex justify-between items-center">
                     <span className="text-slate-400 flex items-center gap-1">
-                      Frais de configuration
-                      <HelpCircle className="h-3 w-3 opacity-50" title="Montage, étalonnage de base et gestion du projet" />
+                      Forfait de base
+                      <HelpCircle className="h-3 w-3 opacity-50" title={activeProperty.label} />
                     </span>
-                    <span className="font-bold">{baseSetupFee.toLocaleString("fr-FR")} DH</span>
+                    <span className="font-bold">{forfait.toLocaleString("fr-FR")} DH</span>
+                  </div>
+                  <div className="flex justify-between items-center text-[10px]">
+                    <span className="text-slate-500 italic">{activeProperty.label}</span>
                   </div>
 
                   {/* Surface Cost */}
@@ -479,23 +504,11 @@ function ContactFormInner() {
                     <span className="font-bold">{areaCost.toLocaleString("fr-FR")} DH</span>
                   </div>
 
-                  {/* Multiplier applied */}
-                  {activeProperty.multiplier !== 1.0 && (
-                    <div className="flex justify-between items-center text-primary-foreground/90">
-                      <span className="text-slate-400">
-                        Complexité ({activeProperty.label})
-                      </span>
-                      <span className="font-bold bg-primary/20 text-primary border border-primary/20 px-1.5 py-0.5 rounded text-[10px]">
-                        x {activeProperty.multiplier}
-                      </span>
-                    </div>
-                  )}
-
                   {/* Hotspots Cost */}
                   {infoPointsCost > 0 && (
                     <div className="flex justify-between items-center">
                       <span className="text-slate-400">
-                        Points d'information ({infoPoints})
+                        Points d’information ({infoPoints} × 120 DH)
                       </span>
                       <span className="font-bold">{infoPointsCost.toLocaleString("fr-FR")} DH</span>
                     </div>
