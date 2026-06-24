@@ -166,6 +166,9 @@ export default function DevisPage() {
   const [raw,         setRaw]         = useState("")
   const [data,        setData]        = useState<DevisData | null>(null)
   const [devisNum,    setDevisNum]    = useState("")
+  const [factureNum,  setFactureNum]  = useState("")
+  const [clientICE,   setClientICE]   = useState("")
+  const [activeDoc,   setActiveDoc]   = useState<"devis" | "facture">("devis")
   const [error,       setError]       = useState("")
   const printRef = useRef<HTMLDivElement>(null)
 
@@ -203,8 +206,14 @@ export default function DevisPage() {
     setDevisNum(generateDevisNum())
   }
 
-  const handlePrint = () => {
-    window.print()
+  const handlePrintDevis = () => {
+    setActiveDoc("devis")
+    setTimeout(() => window.print(), 80)
+  }
+
+  const handlePrintFacture = () => {
+    setActiveDoc("facture")
+    setTimeout(() => window.print(), 80)
   }
 
   // Recalculate line items from parsed data
@@ -224,8 +233,10 @@ export default function DevisPage() {
     <>
       {/* ── Print-only styles ── */}
       <style>{`
+        #print-area { display: none; }
         @media print {
           body * { visibility: hidden; }
+          #print-area { display: block !important; }
           #print-area, #print-area * { visibility: visible; }
           #print-area {
             position: absolute;
@@ -247,8 +258,10 @@ export default function DevisPage() {
 
       {/* ── Control panel (no-print) ── */}
       <div id="no-print" className="min-h-screen bg-slate-950 p-6 flex flex-col items-center gap-6">
+
+        {/* ── DEVIS section ── */}
         <div className="w-full max-w-2xl space-y-4">
-          <h1 className="text-white font-black text-2xl text-center">📄 Générateur de Devis VV360</h1>
+          <h1 className="text-white font-black text-2xl text-center">📄 Générateur de Devis</h1>
 
           <textarea
             value={raw}
@@ -266,10 +279,10 @@ export default function DevisPage() {
             </button>
             {data && (
               <button
-                onClick={handlePrint}
+                onClick={handlePrintDevis}
                 className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition-all"
               >
-                🖨️ Imprimer / Sauvegarder PDF
+                🖨️ Exporter Devis PDF
               </button>
             )}
           </div>
@@ -278,7 +291,7 @@ export default function DevisPage() {
 
         {/* ── Devis preview ── */}
         {data && (
-          <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden" id="print-area" ref={printRef}>
+          <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden">
             <DevisDocument
               data={data}
               devisNum={devisNum}
@@ -293,23 +306,106 @@ export default function DevisPage() {
             />
           </div>
         )}
+
+        {/* ══════════════════════════════════════════════════════ */}
+        {/* ── FACTURE section (visible only after devis generated) ── */}
+        {/* ══════════════════════════════════════════════════════ */}
+        {data && (
+          <div className="w-full max-w-2xl space-y-4">
+            <div className="border-t border-slate-700 pt-8">
+              <h2 className="text-white font-black text-2xl text-center mb-6">🧾 Générateur de Facture</h2>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* ICE client */}
+                <div className="space-y-1">
+                  <label className="text-slate-400 text-xs font-semibold uppercase tracking-wider">ICE de l&apos;entreprise cliente</label>
+                  <input
+                    type="text"
+                    placeholder="ex: 001710168000083"
+                    value={clientICE}
+                    onChange={e => setClientICE(e.target.value)}
+                    className="w-full rounded-xl border border-slate-600 bg-slate-800 text-white px-4 py-3 text-sm outline-none focus:border-teal-400 font-mono"
+                  />
+                </div>
+
+                {/* Numéro de facture */}
+                <div className="space-y-1">
+                  <label className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Numéro de Facture</label>
+                  <input
+                    type="text"
+                    placeholder="ex: 045/2026"
+                    value={factureNum}
+                    onChange={e => setFactureNum(e.target.value)}
+                    className="w-full rounded-xl border border-slate-600 bg-slate-800 text-white px-4 py-3 text-sm outline-none focus:border-teal-400 font-mono"
+                  />
+                </div>
+              </div>
+
+              <button
+                onClick={handlePrintFacture}
+                disabled={!factureNum.trim()}
+                className="mt-4 w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold py-3 rounded-xl transition-all"
+              >
+                🖨️ Exporter Facture PDF
+              </button>
+              {!factureNum.trim() && (
+                <p className="text-slate-500 text-xs text-center mt-1">Entrez un numéro de facture pour activer l&apos;export</p>
+              )}
+            </div>
+
+            {/* Facture preview */}
+            {factureNum.trim() && (
+              <div className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <FactureDocument
+                  data={data}
+                  factureNum={factureNum}
+                  clientICE={clientICE}
+                  todayStr={todayStr}
+                  forfait={forfait}
+                  areaCost={areaCost}
+                  pointsCost={pointsCost}
+                  totalHT={totalHT}
+                  tva={tva}
+                  totalTTC={totalTTC}
+                  fmtDH={fmtDH}
+                />
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
-      {/* ── Print-only output (hidden until print) ── */}
+      {/* ── Print-only output — renders whichever doc is active ── */}
       {data && (
-        <div className="hidden print:block" id="print-area">
-          <DevisDocument
-            data={data}
-            devisNum={devisNum}
-            todayStr={todayStr}
-            forfait={forfait}
-            areaCost={areaCost}
-            pointsCost={pointsCost}
-            totalHT={totalHT}
-            tva={tva}
-            totalTTC={totalTTC}
-            fmtDH={fmtDH}
-          />
+        <div id="print-area">
+          {activeDoc === "devis" ? (
+            <DevisDocument
+              data={data}
+              devisNum={devisNum}
+              todayStr={todayStr}
+              forfait={forfait}
+              areaCost={areaCost}
+              pointsCost={pointsCost}
+              totalHT={totalHT}
+              tva={tva}
+              totalTTC={totalTTC}
+              fmtDH={fmtDH}
+            />
+          ) : (
+            <FactureDocument
+              data={data}
+              factureNum={factureNum}
+              clientICE={clientICE}
+              todayStr={todayStr}
+              forfait={forfait}
+              areaCost={areaCost}
+              pointsCost={pointsCost}
+              totalHT={totalHT}
+              tva={tva}
+              totalTTC={totalTTC}
+              fmtDH={fmtDH}
+            />
+          )}
         </div>
       )}
     </>
@@ -475,6 +571,201 @@ function DevisDocument({
       <div style={{ marginTop: "16px", fontSize: "11px" }}>
         <p style={{ margin: 0 }}>
           Arrêté le présent devis à la somme de{" "}
+          <em>{amountInWords(totalTTC)}</em>
+        </p>
+      </div>
+
+      {/* Signature */}
+      <div style={{ marginTop: "24px", display: "flex", justifyContent: "flex-end", paddingRight: "40px" }}>
+        <div style={{ textAlign: "center" }}>
+          <p style={{ fontWeight: "bold", margin: "0 0 4px 0", fontSize: "11px" }}>Cachet &amp; Signature</p>
+          <SignatureImage width={180} height={120} />
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div style={{ borderTop: "1px solid #ccc", marginTop: "32px", paddingTop: "10px", fontSize: "9px", color: "#444", textAlign: "center", lineHeight: "1.6" }}>
+        <p style={{ margin: 0 }}>
+          Sté. LADRISSI COM * - Adresse : Av. Moulay Ismail, Rés. Farah 2, Bloc B N°2 - 90060 - Tanger.
+        </p>
+        <p style={{ margin: 0 }}>
+          E-mail : ladrissicom@gmail.com - Site web : www.ladrissi.com - GSM: +212669499987
+        </p>
+        <p style={{ margin: 0 }}>
+          ICE : 002449858000074 - IF : 45878006 - Taxe Professionnelle N° : 57114465 - RC : 106351
+        </p>
+        <p style={{ margin: "4px 0 0 0" }}>
+          RIB BMCE : 011 640 0000372100000583 28
+        </p>
+      </div>
+    </div>
+  )
+}
+
+// ─── Facture Document ─────────────────────────────────────────────────────────
+function FactureDocument({
+  data, factureNum, clientICE, todayStr,
+  forfait, areaCost, pointsCost,
+  totalHT, tva, totalTTC, fmtDH
+}: {
+  data: DevisData; factureNum: string; clientICE: string; todayStr: string
+  forfait: number; areaCost: number; pointsCost: number
+  totalHT: number; tva: number; totalTTC: number
+  fmtDH: (n: number) => string
+}) {
+  const typeLabel = data.typeLocal || "Visite virtuelle"
+  
+  // Describe area pricing tier for the designation cell
+  let areaDesc = ""
+  const s = data.superficie
+  if (s > 0) {
+    if      (s <= 100)  areaDesc = `${s} m² × 25 DH/m²`
+    else if (s <= 250)  areaDesc = `Tranches cumulées jusqu'à ${s} m²`
+    else if (s <= 500)  areaDesc = `Tranches cumulées jusqu'à ${s} m²`
+    else if (s <= 1000) areaDesc = `Tranches cumulées jusqu'à ${s} m²`
+    else                areaDesc = `Tranches cumulées jusqu'à ${s} m²`
+  }
+
+  return (
+    <div style={{ fontFamily: "Arial, sans-serif", fontSize: "12px", color: "#000", padding: "24px", background: "#fff" }}>
+
+      {/* Header */}
+      <table style={{ width: "100%", marginBottom: "24px" }}>
+        <tbody>
+          <tr>
+            <td style={{ verticalAlign: "top", width: "50%" }}>
+              <Image
+                src="/Logo-Ladrissi-com-Black.png"
+                alt="Ladrissi Communication Agency"
+                width={160}
+                height={60}
+                style={{ objectFit: "contain" }}
+              />
+            </td>
+            <td style={{ verticalAlign: "top", textAlign: "right" }}>
+              <p style={{ margin: 0, fontWeight: "bold" }}>Tanger, le {todayStr}</p>
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={2} style={{ paddingTop: "12px" }}>
+              <p style={{ margin: 0, fontSize: "16px", fontWeight: "bold" }}>
+                Facture N° : &nbsp;&nbsp;{factureNum}
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      {/* Spacer */}
+      <div style={{ height: "24px" }} />
+
+      {/* Client info */}
+      <p style={{ fontWeight: "bold", margin: "0 0 4px 0" }}>
+        Facturé à : {data.entreprise || data.nom}
+      </p>
+      {clientICE && (
+        <p style={{ margin: "0 0 4px 0" }}>
+          <strong>ICE :</strong> {clientICE}
+        </p>
+      )}
+      <p style={{ margin: "0 0 4px 0" }}>
+        <strong>Client :</strong> {data.nom}
+      </p>
+      <p style={{ margin: "0 0 4px 0" }}>
+        <strong>Tél :</strong> {data.tel}
+      </p>
+      <p style={{ margin: "0 0 4px 0" }}>
+        <strong>Email :</strong> {data.email}
+      </p>
+      {data.date && (
+        <p style={{ margin: "0 0 4px 0" }}>
+          <strong>Date d&apos;exécution souhaitée :</strong> {data.date} à {data.heure}
+        </p>
+      )}
+
+      {/* Spacer */}
+      <div style={{ height: "20px" }} />
+
+      {/* Table */}
+      <table style={{ width: "100%", borderCollapse: "collapse", marginBottom: "0" }}>
+        <thead>
+          <tr style={{ background: "#00b5ad", color: "#fff" }}>
+            <th style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "left",   width: "55%" }}>Désignation</th>
+            <th style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center", width: "15%" }}>Quantité</th>
+            <th style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center", width: "15%" }}>Prix unitaire</th>
+            <th style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center", width: "15%" }}>Total en HT</th>
+          </tr>
+        </thead>
+        <tbody>
+          {/* Row 1 – Forfait */}
+          <tr>
+            <td style={{ border: "1px solid #ccc", padding: "8px 10px" }}>
+              Visite virtuelle 360° – Forfait {typeLabel}
+              <br /><span style={{ fontSize: "10px", color: "#555" }}>Prise de vue, traitement & hébergement 1 an</span>
+            </td>
+            <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>Forfait</td>
+            <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>{fmtDH(forfait)}</td>
+            <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>{fmtDH(forfait)}</td>
+          </tr>
+
+          {/* Row 2 – Superficie */}
+          {data.superficie > 0 && (
+            <tr>
+              <td style={{ border: "1px solid #ccc", padding: "8px 10px" }}>
+                Rendu superficie – {data.superficie.toLocaleString("fr-FR")} m²
+                <br /><span style={{ fontSize: "10px", color: "#555" }}>Tarification dégressive par tranches cumulées ({areaDesc})</span>
+              </td>
+              <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>{data.superficie.toLocaleString("fr-FR")} m²</td>
+              <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>Dégressif</td>
+              <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>{fmtDH(areaCost)}</td>
+            </tr>
+          )}
+
+          {/* Row 3 – Info points */}
+          {data.points > 0 && (
+            <tr>
+              <td style={{ border: "1px solid #ccc", padding: "8px 10px" }}>
+                Points d&apos;information interactifs
+                <br /><span style={{ fontSize: "10px", color: "#555" }}>Hotspots cliquables : texte, images, vidéos, liens</span>
+              </td>
+              <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>{data.points}</td>
+              <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>120,00</td>
+              <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>{fmtDH(pointsCost)}</td>
+            </tr>
+          )}
+
+          {/* Totals */}
+          <tr>
+            <td colSpan={3} style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "right", background: "#00b5ad", color: "#fff", fontWeight: "bold" }}>
+              Total HT
+            </td>
+            <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center", fontWeight: "bold" }}>
+              {fmtDH(totalHT)}
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={3} style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "right", background: "#00b5ad", color: "#fff", fontWeight: "bold" }}>
+              TVA 20%
+            </td>
+            <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center", fontWeight: "bold" }}>
+              {fmtDH(tva)}
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={3} style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "right", background: "#00b5ad", color: "#fff", fontWeight: "bold" }}>
+              Total TTC
+            </td>
+            <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center", fontWeight: "bold" }}>
+              {fmtDH(totalTTC)}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      {/* Amount in words */}
+      <div style={{ marginTop: "16px", fontSize: "11px" }}>
+        <p style={{ margin: 0 }}>
+          Arrêtée la présente facture à la somme de{" "}
           <em>{amountInWords(totalTTC)}</em>
         </p>
       </div>

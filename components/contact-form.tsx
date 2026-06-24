@@ -485,9 +485,9 @@ function ContactFormInner() {
                 <div className="space-y-3.5 text-xs border-t border-slate-800 pt-5">
                   {/* Base Forfait by type */}
                   <div className="flex justify-between items-center">
-                    <span className="text-slate-400 flex items-center gap-1">
+                    <span className="text-slate-400 flex items-center gap-1" title={activeProperty.label}>
                       Forfait de base
-                      <HelpCircle className="h-3 w-3 opacity-50" title={activeProperty.label} />
+                      <HelpCircle className="h-3 w-3 opacity-50" />
                     </span>
                     <span className="font-bold">{forfait.toLocaleString("fr-FR")} DH</span>
                   </div>

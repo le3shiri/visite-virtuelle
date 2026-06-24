@@ -312,9 +312,9 @@ export function PriceCalculator() {
 
               {/* Base Forfait by type */}
               <div className="flex justify-between items-center">
-                <span className="text-slate-400 flex items-center gap-1.5">
+                <span className="text-slate-400 flex items-center gap-1.5" title={tierLabel[activeProperty.tier]}>
                   Forfait de base
-                  <HelpCircle className="h-3.5 w-3.5 opacity-50" title={tierLabel[activeProperty.tier]} />
+                  <HelpCircle className="h-3.5 w-3.5 opacity-50" />
                 </span>
                 <span className="font-bold">{forfait.toLocaleString("fr-FR")} DH</span>
               </div>

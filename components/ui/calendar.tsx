@@ -64,7 +64,7 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        Nav: () => null,
+        Nav: () => <></>,
         Chevron: ({ orientation }) => orientation === 'left' ? <ChevronLeft className="h-5 w-5" /> : <ChevronRight className="h-5 w-5" />,
         MonthCaption: ({ calendarMonth }) => {
           const { goToMonth, previousMonth, nextMonth } = useNavigation();
