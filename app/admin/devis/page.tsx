@@ -227,10 +227,22 @@ export default function DevisPage() {
         @media print {
           body * { visibility: hidden; }
           #print-area, #print-area * { visibility: visible; }
-          #print-area { position: fixed; inset: 0; }
+          #print-area {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+          }
           #no-print { display: none !important; }
+
+          /* ← Force background colors & images to print (teal table headers etc.) */
+          * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            color-adjust: exact !important;
+          }
         }
-        @page { size: A4; margin: 15mm; }
+        @page { size: A4; margin: 12mm 15mm 20mm 15mm; }
       `}</style>
 
       {/* ── Control panel (no-print) ── */}
