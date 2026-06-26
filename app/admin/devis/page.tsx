@@ -478,7 +478,7 @@ function DevisDocument({
         <strong>Client :</strong> {data.nom}
       </p>
       <p style={{ margin: "0 0 4px 0" }}>
-        <strong>Tél :</strong> {data.tel}
+        <strong>Téléphone :</strong> {data.tel}
       </p>
       <p style={{ margin: "0 0 4px 0" }}>
         <strong>Email :</strong> {data.email}
@@ -507,7 +507,7 @@ function DevisDocument({
           <tr>
             <td style={{ border: "1px solid #ccc", padding: "8px 10px" }}>
               Visite virtuelle 360° – Forfait {typeLabel}
-              <br /><span style={{ fontSize: "10px", color: "#555" }}>Prise de vue, traitement & hébergement 1 an</span>
+              <br /><span style={{ fontSize: "10px", color: "#555" }}>Prise de vue, photos 360° haute qualité &amp; traitement</span>
             </td>
             <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>Forfait</td>
             <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>{fmtDH(forfait)}</td>
@@ -694,7 +694,7 @@ function FactureDocument({
         <strong>Client :</strong> {data.nom}
       </p>
       <p style={{ margin: "0 0 4px 0" }}>
-        <strong>Tél :</strong> {data.tel}
+        <strong>Téléphone :</strong> {data.tel}
       </p>
       <p style={{ margin: "0 0 4px 0" }}>
         <strong>Email :</strong> {data.email}
@@ -723,7 +723,7 @@ function FactureDocument({
           <tr>
             <td style={{ border: "1px solid #ccc", padding: "8px 10px" }}>
               Visite virtuelle 360° – Forfait {typeLabel}
-              <br /><span style={{ fontSize: "10px", color: "#555" }}>Prise de vue, traitement & hébergement 1 an</span>
+              <br /><span style={{ fontSize: "10px", color: "#555" }}>Prise de vue, photos 360° haute qualité &amp; traitement</span>
             </td>
             <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>Forfait</td>
             <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>{fmtDH(forfait)}</td>
