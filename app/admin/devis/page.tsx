@@ -29,6 +29,7 @@ function getAreaCost(s: number): number {
 }
 
 const INFO_POINT_RATE = 120
+const HEBERGEMENT_ANNUEL = 824
 const TVA_RATE = 0.20
 
 // ─── Number → French words ────────────────────────────────────────────────────
@@ -101,7 +102,7 @@ function parseMessage(raw: string): DevisData | null {
   return {
     nom,
     email:      get("Email"),
-    tel:        get("Tél") || get("Tel"),
+    tel:        get("Téléphone") || get("Tél") || get("Tel"),
     entreprise: get("Entreprise") || nom,
     typeLocal:  get("Type de local"),
     superficie: parseInt(get("Superficie").replace(/\s|m²/gi, ""), 10) || 0,
@@ -222,7 +223,7 @@ export default function DevisPage() {
                                ?? 2000) : 0
   const areaCost     = data ? getAreaCost(data.superficie) : 0
   const pointsCost   = data ? data.points * INFO_POINT_RATE : 0
-  const totalHT      = forfait + areaCost + pointsCost
+  const totalHT      = forfait + areaCost + pointsCost + HEBERGEMENT_ANNUEL
   const tva          = Math.round(totalHT * TVA_RATE)
   const totalTTC     = totalHT + tva
   const todayStr     = new Date().toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" })
@@ -539,6 +540,17 @@ function DevisDocument({
             </tr>
           )}
 
+          {/* Row 4 – Hébergement annuel */}
+          <tr>
+            <td style={{ border: "1px solid #ccc", padding: "8px 10px" }}>
+              Hébergement annuel de la visite virtuelle
+              <br /><span style={{ fontSize: "10px", color: "#555" }}>Renouvellement annuel — à régler chaque année par le client</span>
+            </td>
+            <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>1 an</td>
+            <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>{fmtDH(HEBERGEMENT_ANNUEL)}</td>
+            <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>{fmtDH(HEBERGEMENT_ANNUEL)}</td>
+          </tr>
+
           {/* Totals */}
           <tr>
             <td colSpan={3} style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "right", background: "#00b5ad", color: "#fff", fontWeight: "bold" }}>
@@ -572,6 +584,16 @@ function DevisDocument({
         <p style={{ margin: 0 }}>
           Arrêté le présent devis à la somme de{" "}
           <em>{amountInWords(totalTTC)}</em>
+        </p>
+      </div>
+
+      {/* Conditions */}
+      <div style={{ marginTop: "14px", padding: "10px 14px", border: "1px solid #e0e0e0", borderRadius: "6px", background: "#f9f9f9", fontSize: "11px", lineHeight: "1.7" }}>
+        <p style={{ margin: "0 0 4px 0" }}>
+          ⏳ <strong>Validité du devis :</strong> Le présent devis est valable <strong>15 jours</strong> à compter de sa date d&apos;émission.
+        </p>
+        <p style={{ margin: 0 }}>
+          💳 <strong>Conditions de règlement :</strong> <strong>50 %</strong> du montant total à régler le jour du tournage &middot; <strong>50 %</strong> à la livraison de la visite virtuelle.
         </p>
       </div>
 
@@ -733,6 +755,17 @@ function FactureDocument({
               <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>{fmtDH(pointsCost)}</td>
             </tr>
           )}
+
+          {/* Row 4 – Hébergement annuel */}
+          <tr>
+            <td style={{ border: "1px solid #ccc", padding: "8px 10px" }}>
+              Hébergement annuel de la visite virtuelle
+              <br /><span style={{ fontSize: "10px", color: "#555" }}>Renouvellement annuel — à régler chaque année par le client</span>
+            </td>
+            <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>1 an</td>
+            <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>{fmtDH(HEBERGEMENT_ANNUEL)}</td>
+            <td style={{ border: "1px solid #ccc", padding: "8px 10px", textAlign: "center" }}>{fmtDH(HEBERGEMENT_ANNUEL)}</td>
+          </tr>
 
           {/* Totals */}
           <tr>
