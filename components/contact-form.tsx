@@ -23,7 +23,9 @@ import {
   Send, 
   CalendarIcon, 
   CheckCircle2, 
-  HelpCircle 
+  HelpCircle,
+  ImagePlus,
+  Tag
 } from "lucide-react"
 import { Calendar } from "@/components/ui/calendar"
 import { format, startOfDay } from "date-fns"
@@ -99,6 +101,9 @@ function ContactFormInner() {
   const [date, setDate] = useState<Date>()
   const [time, setTime] = useState<string | null>(null)
 
+  // Info points detail state
+  const [infoPointsData, setInfoPointsData] = useState<{ title: string; file: File | null }[]>([])
+
   const searchParams = useSearchParams()
   const paramSurface = searchParams.get("surface")
   const paramType = searchParams.get("typeLocal")
@@ -119,6 +124,30 @@ function ContactFormInner() {
   const [propertyType, setPropertyType] = useState(getInitialType())
   const [surface, setSurface] = useState(paramSurface ? Math.max(1, Number(paramSurface)) : 80)
   const [infoPoints, setInfoPoints] = useState(paramPoints ? Math.max(0, Number(paramPoints)) : 5)
+
+  // Sync infoPointsData length when infoPoints changes
+  const syncInfoPointsData = (newCount: number) => {
+    setInfoPointsData(prev => {
+      if (newCount > prev.length) {
+        return [...prev, ...Array(newCount - prev.length).fill(null).map(() => ({ title: "", file: null }))]
+      }
+      return prev.slice(0, newCount)
+    })
+  }
+
+  const handleSetInfoPoints = (val: number) => {
+    const clamped = Math.max(0, val)
+    setInfoPoints(clamped)
+    syncInfoPointsData(clamped)
+  }
+
+  const updateInfoPoint = (index: number, field: "title" | "file", value: string | File | null) => {
+    setInfoPointsData(prev => {
+      const next = [...prev]
+      next[index] = { ...next[index], [field]: value }
+      return next
+    })
+  }
 
   // Pricing formula from formule prix visite virtuelle.md (market-adjusted rates)
   // Prix total = Forfait de base + Prix surface (cumulative brackets) + Prix points d’info
@@ -442,7 +471,7 @@ function ContactFormInner() {
                   <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-2 py-1 rounded-lg">
                     <button
                       type="button"
-                      onClick={() => setInfoPoints(prev => Math.max(0, prev - 1))}
+                      onClick={() => handleSetInfoPoints(infoPoints - 1)}
                       disabled={infoPoints <= 0}
                       className="w-8 h-8 rounded-full border border-slate-200/50 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-900 disabled:opacity-30 disabled:pointer-events-none transition-colors"
                     >
@@ -451,13 +480,13 @@ function ContactFormInner() {
                     <Input 
                       type="number"
                       value={infoPoints}
-                      onChange={(e) => setInfoPoints(Math.max(0, Number(e.target.value)))}
+                      onChange={(e) => handleSetInfoPoints(Number(e.target.value))}
                       className="w-12 h-8 text-center font-bold text-sm bg-transparent border-none p-0 focus-visible:ring-0 focus-visible:ring-offset-0 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none text-foreground"
                       min={0}
                     />
                     <button
                       type="button"
-                      onClick={() => setInfoPoints(prev => prev + 1)}
+                      onClick={() => handleSetInfoPoints(infoPoints + 1)}
                       className="w-8 h-8 rounded-full border border-slate-200/50 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 flex items-center justify-center hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors"
                     >
                       <Plus className="h-3.5 w-3.5 text-foreground" />
@@ -618,6 +647,100 @@ function ContactFormInner() {
                   className="border-slate-200 focus:border-primary text-foreground"
                 />
               </div>
+
+              {/* Info Points Detail Section */}
+              {infoPoints > 0 && (
+                <div className="pt-8 border-t border-slate-100 dark:border-slate-800 space-y-5">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center">
+                      <Tag className="w-4 h-4 text-accent" />
+                    </div>
+                    <div>
+                      <h4 className="font-black text-base text-slate-900 dark:text-white tracking-tight">
+                        Détail des {infoPoints} point{infoPoints > 1 ? "s" : ""} d'information
+                      </h4>
+                      <p className="text-[11px] text-muted-foreground">
+                        Donnez un titre à chaque point et joignez l'image ou le contenu à afficher (optionnel).
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {Array.from({ length: infoPoints }).map((_, i) => (
+                      <div
+                        key={i}
+                        className="rounded-2xl border-2 border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 p-4 space-y-3 hover:border-primary/30 transition-colors"
+                      >
+                        {/* Point number badge */}
+                        <div className="flex items-center gap-2">
+                          <span className="w-6 h-6 rounded-full bg-primary/10 text-primary text-[10px] font-black flex items-center justify-center flex-shrink-0">
+                            {i + 1}
+                          </span>
+                          <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                            Point d'information #{i + 1}
+                          </span>
+                        </div>
+
+                        {/* Title */}
+                        <div className="space-y-1">
+                          <Label className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                            Titre du point
+                          </Label>
+                          <Input
+                            placeholder={`Ex: Chambre principale, Salle de réunion…`}
+                            value={infoPointsData[i]?.title ?? ""}
+                            onChange={(e) => updateInfoPoint(i, "title", e.target.value)}
+                            className="h-10 border-slate-200 focus:border-primary transition-colors text-foreground text-sm"
+                          />
+                        </div>
+
+                        {/* File upload */}
+                        <div className="space-y-1">
+                          <Label className="text-[10px] font-black uppercase tracking-wider text-slate-400">
+                            Image / Fichier joint <span className="normal-case font-normal text-slate-400">(optionnel)</span>
+                          </Label>
+                          <label
+                            htmlFor={`info-point-file-${i}`}
+                            className={cn(
+                              "flex flex-col items-center justify-center gap-1.5 h-24 rounded-xl border-2 border-dashed cursor-pointer transition-all text-center px-3",
+                              infoPointsData[i]?.file
+                                ? "border-primary/50 bg-primary/5 text-primary"
+                                : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-400 hover:border-primary/40 hover:bg-primary/5 hover:text-primary/70"
+                            )}
+                          >
+                            <ImagePlus className="h-5 w-5 flex-shrink-0" />
+                            {infoPointsData[i]?.file ? (
+                              <>
+                                <span className="text-[10px] font-bold leading-tight line-clamp-1 max-w-full">
+                                  {infoPointsData[i].file!.name}
+                                </span>
+                                <span className="text-[9px] opacity-60">
+                                  {(infoPointsData[i].file!.size / 1024).toFixed(0)} Ko
+                                </span>
+                              </>
+                            ) : (
+                              <span className="text-[10px] font-medium leading-tight">
+                                Cliquez pour joindre<br />
+                                <span className="opacity-60">PNG, JPG, PDF — max 10 Mo</span>
+                              </span>
+                            )}
+                            <input
+                              id={`info-point-file-${i}`}
+                              type="file"
+                              accept="image/*,.pdf"
+                              className="sr-only"
+                              onChange={(e) => {
+                                const file = e.target.files?.[0] ?? null
+                                updateInfoPoint(i, "file", file)
+                              }}
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <div className="flex flex-col sm:flex-row justify-between gap-3 pt-6 border-t border-slate-100 dark:border-slate-800">
                 <Button
