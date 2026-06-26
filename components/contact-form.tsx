@@ -150,8 +150,9 @@ function ContactFormInner() {
   }
 
   // Pricing formula from formule prix visite virtuelle.md (market-adjusted rates)
-  // Prix total = Forfait de base + Prix surface (cumulative brackets) + Prix points d’info
+  // Prix total = Forfait de base + Prix surface (cumulative brackets) + Prix points d'info + Hébergement annuel
   const infoPointRate = 120  // 120 DH / point
+  const hebergementAnnuel = 824  // Hébergement annuel fixe
 
   // Cumulative area cost (market-adjusted)
   const BASE_500  = 100 * 25 + 150 * 18 + 250 * 14  // 8 700 DH at 500 m²
@@ -258,17 +259,23 @@ function ContactFormInner() {
         const whatsappNumber = "212669499987"
         const formattedDate = format(date, "EEEE d MMMM yyyy", { locale: fr })
         let whatsappMessage = `Nouvelle demande de réservation :
-👤 Nom: ${data.nom}
-📧 Email: ${data.email}
-📞 Tél: ${data.telephone}
-🏢 Entreprise: ${data.entreprise}
-🏠 Type de local: ${data.typeLocal}
-📐 Superficie: ${data.surface} m²
-ℹ️ Points d'info: ${data.points}
-💰 Tarif estimé: ${totalPrice.toLocaleString("fr-FR")} DH
-📅 Date souhaitée: ${formattedDate}
-⏰ Heure: ${data.heureTournage}
-💬 Message: ${data.message || 'Aucun'}`
+👤 Nom : ${data.nom}
+📧 Email : ${data.email}
+📞 Téléphone : ${data.telephone}
+🏢 Entreprise : ${data.entreprise}
+🏠 Type de local : ${data.typeLocal}
+📐 Superficie : ${data.surface} m²
+ℹ️ Points d'information : ${data.points}
+🖼️ Images 360° haute qualité : incluses
+💰 Tarif estimé total : ${totalPrice.toLocaleString("fr-FR")} DH
+📦 Hébergement annuel (en sus) : ${hebergementAnnuel} DH/an — à régler annuellement par le client
+📅 Date souhaitée : ${formattedDate}
+⏰ Heure : ${data.heureTournage}
+💬 Message : ${data.message || 'Aucun'}
+
+📋 Conditions :
+⏳ Devis valable 15 jours à compter de sa date d'émission.
+💳 50 % à régler le jour du tournage · 50 % à la livraison.`
         
         const encodedMessage = encodeURIComponent(whatsappMessage)
         window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank')
@@ -537,11 +544,17 @@ function ContactFormInner() {
                   {infoPointsCost > 0 && (
                     <div className="flex justify-between items-center">
                       <span className="text-slate-400">
-                        Points d’information ({infoPoints} × 120 DH)
+                        Points d'information ({infoPoints} × 120 DH)
                       </span>
                       <span className="font-bold">{infoPointsCost.toLocaleString("fr-FR")} DH</span>
                     </div>
                   )}
+
+                  {/* Images 360° HD incluses */}
+                  <div className="flex items-center gap-1.5 text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-lg px-2.5 py-1.5">
+                    <svg className="h-3 w-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                    <span className="text-[10px] font-bold">Images 360° haute qualité incluses</span>
+                  </div>
 
                   {/* Average rate */}
                   <div className="flex justify-between items-center text-[10px] text-slate-400 bg-white/5 p-2.5 rounded-lg border border-white/10 mt-1">
@@ -561,6 +574,15 @@ function ContactFormInner() {
                     <span className="text-lg font-bold text-primary">DH</span>
                   </div>
                   <span className="text-[9px] text-slate-500 italic">*Prix estimatif hors taxes, sujet à ajustement.</span>
+                  {/* Hébergement annuel en sus */}
+                  <div className="mt-2 flex justify-between items-center text-[10px] bg-white/5 border border-white/10 rounded-lg px-2.5 py-1.5">
+                    <span className="text-slate-400">+ Hébergement annuel (en sus)</span>
+                    <span className="font-bold text-white">{hebergementAnnuel.toLocaleString("fr-FR")} DH/an</span>
+                  </div>
+                  <div className="mt-1 space-y-1">
+                    <p className="text-[9px] text-amber-400/80">⏳ Devis valable 15 jours à compter de sa date d'émission.</p>
+                    <p className="text-[9px] text-slate-400">💳 50% à régler le jour du tournage · 50% à la livraison.</p>
+                  </div>
                 </div>
 
                 <Button 
@@ -848,7 +870,11 @@ function ContactFormInner() {
                           <span>Points d'information :</span>
                           <span className="font-bold text-slate-950 dark:text-white">{infoPoints}</span>
                         </div>
-                        
+                        <div className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
+                          <svg className="h-3 w-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                          <span className="text-[10px] font-semibold">Images 360° haute qualité incluses</span>
+                        </div>
+
                         <div className="border-t border-slate-200/60 dark:border-slate-800/60 my-2" />
                         
                         <div className="flex justify-between">
@@ -875,6 +901,15 @@ function ContactFormInner() {
                         <p className="text-[9px] text-slate-400 italic text-center mt-1">
                           *Hors taxes, sujet à ajustement final.
                         </p>
+                        {/* Hébergement annuel en sus */}
+                        <div className="flex justify-between items-center text-[10px] bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700/40 rounded-lg px-2.5 py-1.5 mt-1">
+                          <span className="text-amber-700 dark:text-amber-400 font-medium">+ Hébergement annuel (en sus)</span>
+                          <span className="font-bold text-amber-800 dark:text-amber-300">{hebergementAnnuel.toLocaleString("fr-FR")} DH/an</span>
+                        </div>
+                        <div className="mt-2 pt-2 border-t border-slate-200/40 dark:border-slate-800/40 space-y-1">
+                          <p className="text-[9px] text-amber-600 dark:text-amber-400 font-medium">⏳ Devis valable 15 jours à compter de sa date d'émission.</p>
+                          <p className="text-[9px] text-slate-500 dark:text-slate-400">💳 50 % à régler le jour du tournage · 50 % à la livraison.</p>
+                        </div>
                       </div>
                     </div>
                   </div>

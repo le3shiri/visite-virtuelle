@@ -44,7 +44,9 @@ export async function POST(request: Request) {
         <ul>
           ${surface ? `<li><strong>Superficie :</strong> ${surface} m²</li>` : ""}
           ${points ? `<li><strong>Points d'information :</strong> ${points}</li>` : ""}
-          ${price ? `<li><strong>Tarif estimé :</strong> ${Number(price).toLocaleString("fr-FR")} DH</li>` : ""}
+          <li><strong>Hébergement annuel :</strong> 824 DH (inclus)</li>
+          <li><strong>Images 360° haute qualité :</strong> incluses</li>
+          ${price ? `<li><strong>Tarif estimé total :</strong> ${Number(price).toLocaleString("fr-FR")} DH</li>` : ""}
         </ul>
       `
     }
@@ -55,6 +57,14 @@ export async function POST(request: Request) {
         <p>${message}</p>
       `
     }
+
+    emailContent += `
+      <hr style="margin: 20px 0; border: none; border-top: 1px solid #e5e7eb;" />
+      <p style="font-size: 12px; color: #6b7280;">
+        ⏳ <strong>Devis valable 15 jours</strong> à compter de sa date d'émission.<br/>
+        💳 <strong>Conditions de paiement :</strong> 50 % à régler le jour du tournage · 50 % à la livraison.
+      </p>
+    `
 
     await resend.emails.send({
       from: "Ladrissi Com <onboarding@resend.dev>",
