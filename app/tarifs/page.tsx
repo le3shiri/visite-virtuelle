@@ -59,7 +59,7 @@ export default function TarifsPage() {
               Tarification Transparente
             </div>
             <h1 className="text-4xl lg:text-6xl font-bold mb-6 text-balance">
-              Estimez votre projet <span className="text-primary">en temps réel</span>
+              Obtenez votre tarif<span className="text-primary"> immédiatement</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 text-pretty">
               Définissez votre tarif sur mesure en fonction de votre espace, de sa complexité et de vos besoins en points d'information interactifs.

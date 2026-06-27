@@ -591,7 +591,7 @@ function ContactFormInner() {
                   size="lg" 
                   className="w-full py-5 text-sm font-bold shadow-lg bg-primary hover:bg-primary/90 text-white rounded-xl transition-all hover:scale-[1.01] active:scale-[1.0] cursor-pointer"
                 >
-                  Continuer vers mes coordonnées
+                  Continuer
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </div>
