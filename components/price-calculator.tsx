@@ -8,6 +8,11 @@ import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import * as fbq from "@/lib/fbpixel"
+
+interface PriceCalculatorProps {
+  /** When provided, clicking the CTA calls this instead of navigating to /contact */
+  onReserve?: (surface: number, typeLocal: string, points: number, price: number) => void
+}
 import { 
   Building2, 
   ShoppingBag, 
@@ -117,7 +122,7 @@ const tierLabel: Record<PropertyTier, string> = {
 
 const infoPointRate = 120 // DH per info point
 
-export function PriceCalculator() {
+export function PriceCalculator({ onReserve }: PriceCalculatorProps = {}) {
   const [propertyType, setPropertyType] = useState("Immobilier")
   const [surface, setSurface] = useState(80)
   const [infoPoints, setInfoPoints] = useState(5)
@@ -384,18 +389,33 @@ export function PriceCalculator() {
               <span className="text-[10px] text-slate-500 italic">*Prix estimatif hors taxes, sujet à ajustement après visite de repérage.</span>
             </div>
 
-            <Button asChild size="lg" className="w-full py-6 text-base font-bold shadow-lg bg-primary hover:bg-primary/90 text-white rounded-xl transition-all hover:scale-[1.02] active:scale-[1.0]">
-              <Link 
-                href={`/contact?surface=${surface}&typeLocal=${propertyType}&points=${infoPoints}&price=${totalPrice}`}
+            {onReserve ? (
+              <Button
+                size="lg"
+                className="w-full py-6 text-base font-bold shadow-lg bg-primary hover:bg-primary/90 text-white rounded-xl transition-all hover:scale-[1.02] active:scale-[1.0] cursor-pointer"
                 onClick={() => {
                   fbq.trackPricingView(propertyType)
                   fbq.trackQuoteRequest(propertyType, totalPrice)
+                  onReserve(surface, propertyType, infoPoints, totalPrice)
                 }}
               >
                 Réserver à ce tarif
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+              </Button>
+            ) : (
+              <Button asChild size="lg" className="w-full py-6 text-base font-bold shadow-lg bg-primary hover:bg-primary/90 text-white rounded-xl transition-all hover:scale-[1.02] active:scale-[1.0]">
+                <Link
+                  href={`/contact?surface=${surface}&typeLocal=${propertyType}&points=${infoPoints}&price=${totalPrice}`}
+                  onClick={() => {
+                    fbq.trackPricingView(propertyType)
+                    fbq.trackQuoteRequest(propertyType, totalPrice)
+                  }}
+                >
+                  Réserver à ce tarif
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            )}
           </div>
         </div>
       </div>

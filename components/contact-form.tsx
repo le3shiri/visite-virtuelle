@@ -94,7 +94,13 @@ const propertyTypes = [
   }
 ]
 
-function ContactFormInner() {
+interface ContactFormProps {
+  initialSurface?: number
+  initialTypeLocal?: string
+  initialPoints?: number
+}
+
+function ContactFormInner({ initialSurface, initialTypeLocal, initialPoints }: ContactFormProps) {
   const [step, setStep] = useState<1 | 2 | 3>(1)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
@@ -110,20 +116,28 @@ function ContactFormInner() {
   const paramPoints = searchParams.get("points")
 
   // Map paramType parameter to matching propertyType
-  const getInitialType = () => {
-    if (!paramType) return "Immobilier"
-    if (paramType.toLowerCase() === "showroom" || paramType.toLowerCase() === "commerce") return "Commerce"
-    const found = propertyTypes.some(t => t.id.toLowerCase() === paramType.toLowerCase())
+  const resolveType = (raw: string | null) => {
+    if (!raw) return "Immobilier"
+    if (raw.toLowerCase() === "showroom" || raw.toLowerCase() === "commerce") return "Commerce"
+    const found = propertyTypes.some(t => t.id.toLowerCase() === raw.toLowerCase())
     if (found) {
-      return propertyTypes.find(t => t.id.toLowerCase() === paramType.toLowerCase())?.id || "Immobilier"
+      return propertyTypes.find(t => t.id.toLowerCase() === raw.toLowerCase())?.id || "Immobilier"
     }
     return "Immobilier"
   }
 
-  // Calculator states
-  const [propertyType, setPropertyType] = useState(getInitialType())
-  const [surface, setSurface] = useState(paramSurface ? Math.max(1, Number(paramSurface)) : 80)
-  const [infoPoints, setInfoPoints] = useState(paramPoints ? Math.max(0, Number(paramPoints)) : 5)
+  // Calculator states — props take priority, fallback to URL params, then defaults
+  const [propertyType, setPropertyType] = useState(
+    initialTypeLocal ? resolveType(initialTypeLocal) : resolveType(paramType)
+  )
+  const [surface, setSurface] = useState(
+    initialSurface !== undefined ? Math.max(1, initialSurface) :
+    paramSurface ? Math.max(1, Number(paramSurface)) : 80
+  )
+  const [infoPoints, setInfoPoints] = useState(
+    initialPoints !== undefined ? Math.max(0, initialPoints) :
+    paramPoints ? Math.max(0, Number(paramPoints)) : 5
+  )
 
   // Sync infoPointsData length when infoPoints changes
   const syncInfoPointsData = (newCount: number) => {
@@ -948,10 +962,14 @@ function ContactFormInner() {
   )
 }
 
-export function ContactForm() {
+export function ContactForm({ initialSurface, initialTypeLocal, initialPoints }: ContactFormProps = {}) {
   return (
     <Suspense fallback={<div className="h-64 flex items-center justify-center animate-pulse text-muted-foreground">Chargement du formulaire...</div>}>
-      <ContactFormInner />
+      <ContactFormInner
+        initialSurface={initialSurface}
+        initialTypeLocal={initialTypeLocal}
+        initialPoints={initialPoints}
+      />
     </Suspense>
   )
 }

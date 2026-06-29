@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 import { Check, X, Sparkles } from "lucide-react"
 import Image from "next/image"
-import { PriceCalculator } from "@/components/price-calculator"
+import { TarifsBookingFlow } from "@/components/tarifs-booking-flow"
 
 export const metadata = {
   title: "Simulateur de Tarif - Visites Virtuelles 360° | Ladrissi Com",
@@ -78,7 +78,7 @@ export default function TarifsPage() {
             </p>
           </div>
 
-          <PriceCalculator />
+          <TarifsBookingFlow />
         </div>
       </section>
 
