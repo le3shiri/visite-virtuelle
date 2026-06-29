@@ -53,19 +53,18 @@ export default function ContactPage() {
       {/* Contact Section */}
       <section id="formulaire" className="py-16 lg:py-24">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12 max-w-7xl mx-auto">
             {/* Contact Info */}
-            <div className="lg:col-span-1 space-y-6">
+            <div className="lg:col-span-1 space-y-5">
               <div>
-                <h2 className="text-2xl font-bold mb-6">Contactez-nous</h2>
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  Notre équipe est à votre disposition pour répondre à toutes vos questions et vous accompagner dans
-                  votre projet.
+                <h2 className="text-xl font-bold mb-4">Contactez-nous</h2>
+                <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                  Notre équipe est à votre disposition pour répondre à toutes vos questions.
                 </p>
               </div>
 
-              <Card className="border-2">
-                <CardContent className="p-6 space-y-4">
+              <Card className="border">
+                <CardContent className="p-4 space-y-3">
                   <div className="flex items-start gap-3">
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                       <Phone className="h-5 w-5 text-primary" />
@@ -135,7 +134,7 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Form */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-3">
               <ContactForm />
             </div>
           </div>
