@@ -65,68 +65,68 @@ export default function ContactPage() {
 
               <Card className="border">
                 <CardContent className="p-4 space-y-3">
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Phone className="h-5 w-5 text-primary" />
+                  <div className="flex items-start gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Phone className="h-4 w-4 text-primary" />
                     </div>
                     <div>
-                      <div className="font-semibold mb-1">Téléphone</div>
-                      <a href="tel:+212669499987" className="text-sm text-muted-foreground hover:text-primary">
+                      <div className="text-sm font-semibold mb-0.5">Téléphone</div>
+                      <a href="tel:+212669499987" className="text-xs text-muted-foreground hover:text-primary">
                         +212 6 69 49 99 87
                       </a>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                      <MessageSquare className="h-5 w-5 text-accent" />
+                  <div className="flex items-start gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+                      <MessageSquare className="h-4 w-4 text-accent" />
                     </div>
                     <div>
-                      <div className="font-semibold mb-1">WhatsApp</div>
+                      <div className="text-sm font-semibold mb-0.5">WhatsApp</div>
                       <a
                         href="https://wa.me/212669499987"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm text-muted-foreground hover:text-primary"
+                        className="text-xs text-muted-foreground hover:text-primary"
                       >
                         +212 6 69 49 99 87
                       </a>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Mail className="h-5 w-5 text-primary" />
+                  <div className="flex items-start gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Mail className="h-4 w-4 text-primary" />
                     </div>
                     <div>
-                      <div className="font-semibold mb-1">Email</div>
+                      <div className="text-sm font-semibold mb-0.5">Email</div>
                       <a
                         href="mailto:Ladrissicom@gmail.com"
-                        className="text-sm text-muted-foreground hover:text-primary"
+                        className="text-xs text-muted-foreground hover:text-primary"
                       >
                         Ladrissicom@gmail.com
                       </a>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                      <MapPin className="h-5 w-5 text-accent" />
+                  <div className="flex items-start gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+                      <MapPin className="h-4 w-4 text-accent" />
                     </div>
                     <div>
-                      <div className="font-semibold mb-1">Adresse</div>
-                      <p className="text-sm text-muted-foreground">Avenue Moulay Smail immeuble farah num 2 tanger</p>
+                      <div className="text-sm font-semibold mb-0.5">Adresse</div>
+                      <p className="text-xs text-muted-foreground">Avenue Moulay Smail immeuble farah num 2 tanger</p>
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Clock className="h-5 w-5 text-primary" />
+                  <div className="flex items-start gap-2">
+                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Clock className="h-4 w-4 text-primary" />
                     </div>
                     <div>
-                      <div className="font-semibold mb-1">Horaires</div>
-                      <p className="text-sm text-muted-foreground">Lun - Ven : 9h - 18h</p>
-                      <p className="text-sm text-muted-foreground">Sam : 9h - 13h</p>
+                      <div className="text-sm font-semibold mb-0.5">Horaires</div>
+                      <p className="text-xs text-muted-foreground">Lun - Ven : 9h - 18h</p>
+                      <p className="text-xs text-muted-foreground">Sam : 9h - 13h</p>
                     </div>
                   </div>
                 </CardContent>
